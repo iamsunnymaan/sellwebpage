@@ -7,47 +7,26 @@ const products = [
 ];
 
 const categoryData = {
-    sculptures: {
-        title: "Masterpiece Sculptures",
-        desc: "Hand-carved centerpieces that capture the soul of Indian natural stone.",
-        img: "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=1000"
-    },
-    flooring: {
-        title: "Bespoke Flooring",
-        desc: "Seamless luxury flooring designed with premium marble and granite.",
-        img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1000"
-    },
-    murals: {
-        title: "Artistic Wall Murals",
-        desc: "Exquisite stone carvings that transform walls into storytelling canvases.",
-        img: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1000"
-    },
-    fountains: {
-        title: "Architectural Fountains",
-        desc: "Elegant water features custom-crafted for grand landscapes.",
-        img: "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=1000"
-    },
-
-    /* Infrastructure sections used by the left vertical nav */
-    "mines": {
-        title: "Mines",
-        desc: "Sustainably sourced quarries where high-quality natural stone is extracted and assessed.",
-        img: "img/2046556.jpg"
-    },
-    "manufacturing-units": {
-        title: "Manufacturing Units",
-        desc: "State-of-the-art fabrication units where stone blocks are cut, finished, and polished.",
+    // ... keep your existing sculpture/flooring data if needed ...
+    'mines': {
+        title: "Our Private Mines",
+        desc: "We source our raw stone directly from premium quarries, ensuring the highest grade of natural marble and sandstone from the very start.",
         img: "img/grungy-gray-marble-textured-background.jpg"
     },
-    "quality-control": {
-        title: "Quality Control",
-        desc: "Rigorous inspection and testing ensure each product meets our premium standards.",
-        img: "https://images.unsplash.com/photo-1542736667-069246bdbc9d?w=1000"
+    'manufacturing-units': {
+        title: "State-of-the-Art Facilities",
+        desc: "Our manufacturing units utilize precision Italian machinery to cut and polish stone to international luxury standards.",
+        img: "img/2046556.jpg"
     },
-    "packaging-unit": {
-        title: "Packaging Unit",
-        desc: "Protective, eco-conscious packaging processes that keep products safe during transport.",
+    'quality-control': {
+        title: "Rigorous Inspection",
+        desc: "Every slab undergoes a 12-point quality check to ensure color consistency, structural integrity, and a flawless finish.",
         img: "img/pastel-purple-marble-background-with-gold-lining.jpg"
+    },
+    'packaging-unit': {
+        title: "Secure Global Shipping",
+        desc: "Custom wooden crating and reinforced padding ensure that every masterpiece arrives at your doorstep in perfect condition.",
+        img: "img/2046556.jpg"
     }
 };
 
@@ -56,8 +35,6 @@ let cart = [];
 // --- INITIALIZE PAGE ---
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
-    // show first infrastructure section by default (first .v-nav-item)
-    showCategory('mines', document.querySelector('.v-nav-item'));
 
     // initialize horizontal nav after DOM ready
     if (typeof initHorizontalNav === 'function') initHorizontalNav();
@@ -65,38 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- Horizontal nav product categories (used by the center long bar) ---
 
-// Updated: showCategory now updates the middle visual panel and the right-side details
-function showCategory(cat, element) {
-    document.querySelectorAll('.v-nav-item').forEach(item => item.classList.remove('active'));
-    if (element) element.classList.add('active');
 
-    const data = categoryData[cat];
-    if (!data) return;
-
-    // Middle image panel
-    const media = document.getElementById('category-media');
-    if (media) {
-        media.innerHTML = `<img src="${data.img}" class="btw-image" alt="${data.title}">`;
-    }
-
-    // Right details panel
-    const display = document.getElementById('category-display');
-    if (display) {
-        display.innerHTML = `
-            <div class="category-details">
-                <h3>${data.title}</h3>
-                <p>${data.desc}</p>
-                <button class="connect-btn explore-btn">Explore Categories</button>
-            </div>
-        `;
-
-        const btn = display.querySelector('.explore-btn');
-        if (btn) btn.onclick = () => {
-            const target = document.querySelector('.unified-gallery-wrapper');
-            if (target) target.scrollIntoView({ behavior: 'smooth' });
-        };
-    }
-}
 const productCategories = {
     'le-luxe': {
         title: 'Le Luxe',
@@ -321,20 +267,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- VERTICAL NAV LOGIC ---
 function showCategory(cat, element) {
+    // 1. Handle Active Tab Styling
     document.querySelectorAll('.v-nav-item').forEach(item => item.classList.remove('active'));
     element.classList.add('active');
 
-    const display = document.getElementById('category-display');
     const data = categoryData[cat];
-    
+    if (!data) return;
+
+    // 2. Update the Center Image
+    const mediaContainer = document.getElementById('category-media');
+    // We update the source of the image. For a smoother transition, 
+    // you can target a single image tag rather than multiple.
+    mediaContainer.innerHTML = `<img src="${data.img}" class="btw-image" alt="${data.title}">`;
+
+    // 3. Update the Right Section Content
+    const display = document.getElementById('category-display');
     display.innerHTML = `
-        <div class="category-content">
-            <img src="${data.img}" class="category-image" alt="${data.title}">
-            <div class="category-info">
-                <h3>${data.title}</h3>
-                <p>${data.desc}</p>
-                <button class="connect-btn">Explore Category</button>
-            </div>
+        <div class="category-details">
+            <h3 class="v-nav-list" style="border:none; color:#111; font-size: 1.6rem; font-weight: 600;">${data.title}</h3>
+            <p class="muted">${data.desc}</p>
+            <button class="connect-btn explore-btn">Explore Categories</button>
         </div>
     `;
 }

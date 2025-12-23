@@ -8,7 +8,7 @@
 body {
     /* background-color: #fdfdfd; */
     background-color: #f0eee9;
-    
+
     color: #111;
     overflow-x: hidden;
     scroll-behavior: smooth;
@@ -191,22 +191,26 @@ body {
     background: #111;
 }
 
-/* VERTICAL NAVIGATION SECTION */
+/* VERTICAL NAVIGATION SHOWROOM */
 .vertical-nav-container {
+    --vheight: 480px;
+    /* fixed showroom height */
     display: flex;
-    padding: 100px 8%;
+    gap: 40px;
+    padding: 80px 8%;
     background: #fff;
-    gap: 80px;
+    align-items: stretch;
+    height: var(--vheight);
+    max-height: var(--vheight);
+    overflow: hidden;
+    /* keep everything inside the showroom frame */
+    box-sizing: border-box;
 }
 
 .vertical-nav-left {
     flex: 0 0 260px;
-}
-
-.v-nav-list {
-    list-style: none;
-    position: sticky;
-    top: 150px;
+    min-height: 0;
+    overflow: auto;
 }
 
 .v-nav-title {
@@ -214,25 +218,33 @@ body {
     text-transform: uppercase;
     letter-spacing: 3px;
     color: #888;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
     font-weight: 600;
 }
 
+.v-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 100%;
+    overflow: auto;
+}
+
 .v-nav-item {
-    padding: 18px 0;
+    padding: 14px 0;
     font-size: 0.95rem;
     color: #666;
     cursor: pointer;
-    transition: 0.24s;
+    transition: color 200ms, padding-left 200ms;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    border-bottom: 1px solid #f0f0f0;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #f3f3f3;
 }
 
 .v-nav-item.active {
     color: #111;
     font-weight: 700;
-    padding-left: 12px;
+    padding-left: 10px;
 }
 
 .vertical-nav-btw {
@@ -240,47 +252,83 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 420px;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
 }
 
 .btw-image {
     width: 100%;
-    height: 420px;
+    height: 100%;
     object-fit: cover;
     border-radius: 8px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    display: block;
+   animation: fadeIn 0.5s ease-in-out; /* Add this */
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.btw-image.fade-out {
+    opacity: 0;
 }
 
 .vertical-nav-right {
     flex: 0.9;
-    min-height: 420px;
+    height: 100%;
+    min-height: 0;
     display: flex;
     align-items: center;
+    padding: 20px;
+    overflow: auto;
+    box-sizing: border-box;
 }
 
 .category-details h3 {
     font-size: 1.6rem;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 600;
 }
+
 .category-details p {
     color: #666;
     line-height: 1.6;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 }
 
-.explore-btn { display: inline-block; }
+.explore-btn {
+    display: inline-block;
+}
 
 @media (max-width: 992px) {
     .vertical-nav-container {
         flex-direction: column;
-        padding: 60px 6%;
-        gap: 30px;
+        height: auto;
+        max-height: none;
+        padding: 40px 6%;
+        gap: 20px;
+        overflow: visible;
     }
-    .v-nav-list { position: relative; top: 0; display: flex; gap: 18px; overflow-x: auto; }
-    .vertical-nav-btw { order: 3; min-height: 280px; }
-    .vertical-nav-right { order: 2; }
-    .btw-image { height: 260px; }
+
+    .vertical-nav-left {
+        order: 1;
+    }
+
+    .vertical-nav-right {
+        order: 2;
+    }
+
+    .vertical-nav-btw {
+        order: 3;
+        height: auto;
+        min-height: 240px;
+    }
+
+    .btw-image {
+        height: 240px;
+    }
 }
 
 .category-content {
@@ -376,16 +424,45 @@ body {
 }
 
 /* PRODUCT MODAL ADJUSTMENTS */
-.product-modal-content { max-width: 880px; width: calc(100% - 40px); padding: 20px 24px; }
-.product-modal-content .modal-image { width: 100%; height: 420px; object-fit: cover; border-radius: 8px; display: block; }
-.product-modal-content .modal-title { font-size: 1.4rem; margin-top: 12px; }
-.product-modal-content .modal-price { font-weight: 600; }
-.product-modal-content .modal-actions { display: flex; gap: 12px; margin-top: 14px; }
+.product-modal-content {
+    max-width: 880px;
+    width: calc(100% - 40px);
+    padding: 20px 24px;
+}
+
+.product-modal-content .modal-image {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.product-modal-content .modal-title {
+    font-size: 1.4rem;
+    margin-top: 12px;
+}
+
+.product-modal-content .modal-price {
+    font-weight: 600;
+}
+
+.product-modal-content .modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+}
 
 /* Slightly reduce cart modal margin on small screens */
 @media (max-width: 600px) {
-    .modal-content { margin: 40px 20px; padding: 20px; }
-    .product-modal-content .modal-image { height: 260px; }
+    .modal-content {
+        margin: 40px 20px;
+        padding: 20px;
+    }
+
+    .product-modal-content .modal-image {
+        height: 260px;
+    }
 }
 
 .close {
@@ -451,18 +528,22 @@ body {
 }
 
 /* LUXURY DROPDOWN SYSTEM */
-.dropdown, .sub-dropdown, .nested-dropdown {
+.dropdown,
+.sub-dropdown,
+.nested-dropdown {
     position: relative;
 }
 
 /* Reset dropdown list formatting (no bullets, no default padding/margin) */
-.dropdown-content, .sub-dropdown-content, .nested-content {
+.dropdown-content,
+.sub-dropdown-content,
+.nested-content {
     position: absolute;
     top: 100%;
     left: 0;
     background: #ffffff;
     min-width: 220px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 6px 0;
     z-index: 3000;
@@ -478,13 +559,17 @@ body {
     transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
 }
 
-.dropdown-content li, .sub-dropdown-content li, .nested-content li {
+.dropdown-content li,
+.sub-dropdown-content li,
+.nested-content li {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.dropdown-content a, .sub-dropdown-content a, .nested-content a {
+.dropdown-content a,
+.sub-dropdown-content a,
+.nested-content a {
     display: block;
     padding: 10px 18px;
     text-decoration: none;
@@ -494,7 +579,9 @@ body {
     transition: background 150ms, color 150ms, padding-left 150ms;
 }
 
-.dropdown-content a:hover, .sub-dropdown-content a:hover, .nested-content a:hover {
+.dropdown-content a:hover,
+.sub-dropdown-content a:hover,
+.nested-content a:hover {
     background: #f9f9f9;
     color: #111;
     padding-left: 26px;
@@ -504,8 +591,10 @@ body {
 .sub-dropdown-content {
     left: 100%;
     top: 0;
-    margin-left: 0; /* remove horizontal gap so submenu sits flush */
-    transform: translateY(0); /* prevent vertical gap while hovering between levels */
+    margin-left: 0;
+    /* remove horizontal gap so submenu sits flush */
+    transform: translateY(0);
+    /* prevent vertical gap while hovering between levels */
 }
 
 /* Nested Hardscape should also appear to the right (no gap) */
@@ -513,18 +602,19 @@ body {
     position: absolute;
     left: 100%;
     top: 0;
-    margin-left: -1px; /* slight overlap to avoid 1px seam from borders */
+    margin-left: -1px;
+    /* slight overlap to avoid 1px seam from borders */
     transform: translateY(0);
     min-width: 180px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
     border: 1px solid #f0f0f0;
     background: #fff;
 }
 
 /* Show menus on hover (desktop) or when open class is set (click/touch) */
-.dropdown:hover > .dropdown-content,
-.dropdown.open > .dropdown-content,
+.dropdown:hover>.dropdown-content,
+.dropdown.open>.dropdown-content,
 .dropdown-content:hover {
     opacity: 1;
     visibility: visible;
@@ -532,8 +622,8 @@ body {
     transform: translateY(0);
 }
 
-.sub-dropdown:hover > .sub-dropdown-content,
-.sub-dropdown.open > .sub-dropdown-content,
+.sub-dropdown:hover>.sub-dropdown-content,
+.sub-dropdown.open>.sub-dropdown-content,
 .sub-dropdown-content:hover {
     opacity: 1;
     visibility: visible;
@@ -541,8 +631,8 @@ body {
     transform: translateY(0);
 }
 
-.nested-dropdown:hover > .nested-content,
-.nested-dropdown.open > .nested-content,
+.nested-dropdown:hover>.nested-content,
+.nested-dropdown.open>.nested-content,
 .nested-content:hover {
     opacity: 1;
     visibility: visible;
@@ -551,8 +641,15 @@ body {
 }
 
 @keyframes menuFade {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Adjusting Nav Box width for more items */
@@ -576,10 +673,10 @@ body {
     background: #fff;
     padding: 12px 40px;
     border-radius: 50px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
     border: 1px solid #eee;
     /* Crucial: ensure overflow is visible to let submenus pop out */
-    overflow: visible; 
+    overflow: visible;
     display: flex;
     justify-content: center;
     position: relative;
@@ -590,7 +687,7 @@ body {
     position: relative;
     width: 100%;
     /* Ensure the nav itself doesn't clip content */
-    overflow: visible; 
+    overflow: visible;
 }
 
 .h-nav-list {
@@ -602,11 +699,12 @@ body {
     padding: 0;
     justify-content: center;
     /* Removed overflow-x: auto to prevent clipping submenus */
-    overflow: visible; 
+    overflow: visible;
 }
 
 .h-nav-item {
-    position: relative; /* Submenu positions relative to this item */
+    position: relative;
+    /* Submenu positions relative to this item */
 }
 
 .h-nav-btn {
@@ -629,20 +727,21 @@ body {
     position: absolute;
     /* Center the submenu relative to the button button */
     left: 50%;
-    top: calc(100% + 04px); 
+    top: calc(100% + 04px);
     transform: translateX(-50%) translateY(10px);
-    
+
     /* Auto width allows it to be wider than the parent pill */
     width: auto;
     min-width: 250px;
-    
+
     display: flex;
-    flex-wrap: nowrap; /* Keep items in one line */
+    flex-wrap: nowrap;
+    /* Keep items in one line */
     gap: 10px;
     padding: 15px 20px;
     background: #fff;
-    border-radius: 15px; 
-    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
     border: 1px solid #f0f0f0;
 
     opacity: 0;
@@ -672,8 +771,8 @@ body {
 }
 
 /* SHOW STATE */
-.h-nav-item:hover > .h-submenu,
-.h-nav-item.open > .h-submenu {
+.h-nav-item:hover>.h-submenu,
+.h-nav-item.open>.h-submenu {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -681,8 +780,8 @@ body {
 }
 
 /* Ensure open or on-top submenus appear above others */
-.h-nav-item.open > .h-submenu,
-.h-nav-item.on-top > .h-submenu {
+.h-nav-item.open>.h-submenu,
+.h-nav-item.on-top>.h-submenu {
     z-index: 7000;
 }
 
@@ -694,22 +793,25 @@ body {
         max-width: 90vw;
         overflow-x: auto;
     }
-    .h-nav-item:hover > .h-submenu,
-    .h-nav-item.open > .h-submenu {
+
+    .h-nav-item:hover>.h-submenu,
+    .h-nav-item.open>.h-submenu {
         transform: translateY(0);
     }
 }
+
 /* ... (REST OF YOUR CSS) ... */
 /* Caret indicators placed to the far right of submenu buttons */
-.dropdown > a,
-.sub-dropdown > a,
-.nested-dropdown > a {
+.dropdown>a,
+.sub-dropdown>a,
+.nested-dropdown>a {
     position: relative;
-    padding-right: 30px; /* room for the caret */
+    padding-right: 30px;
+    /* room for the caret */
 }
 
 /* Top-level dropdown shows a down caret */
-.dropdown > a::after {
+.dropdown>a::after {
     content: '▾';
     position: absolute;
     right: 12px;
@@ -721,8 +823,8 @@ body {
 }
 
 /* Sub-dropdown and nested use a right caret */
-.sub-dropdown > a::after,
-.nested-dropdown > a::after {
+.sub-dropdown>a::after,
+.nested-dropdown>a::after {
     content: '▸';
     position: absolute;
     right: 12px;
@@ -734,17 +836,17 @@ body {
 }
 
 /* Highlight caret on hover/open */
-.dropdown:hover > a::after,
-.sub-dropdown:hover > a::after,
-.nested-dropdown:hover > a::after,
-.dropdown.open > a::after,
-.sub-dropdown.open > a::after,
-.nested-dropdown.open > a::after {
+.dropdown:hover>a::after,
+.sub-dropdown:hover>a::after,
+.nested-dropdown:hover>a::after,
+.dropdown.open>a::after,
+.sub-dropdown.open>a::after,
+.nested-dropdown.open>a::after {
     color: #111;
 }
 
 /* Small rotation for down caret when open to indicate state */
-.dropdown.open > a::after {
+.dropdown.open>a::after {
     transform: translateY(-50%) rotate(180deg);
 }
 
@@ -752,10 +854,10 @@ body {
 /* THE MAIN CONTAINER BOX */
 .unified-gallery-wrapper {
     /* Background image with subtle dark overlay for legibility */
-    background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('img/2046556.jpg') center/cover no-repeat;
-    padding: 80px 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('img/2046556.jpg') center/cover no-repeat;
+    padding: 08px 0px 80px 0px;
     min-height: 50vh;
-   
+
     /* Keep background scrolling with content for better mobile behavior */
     /* background-attachment: scroll; */
 }
@@ -767,11 +869,13 @@ body {
     border: 1px solid #e0e0e0;
     border-radius: 12px;
     padding: 40px;
-    
+
     /* SCROLL LOGIC */
-    max-height: 850px; /* Adjust height as needed */
-    overflow-y: auto;  /* Scrollbar appears on the right if content is long */
-    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    max-height: 850px;
+    /* Adjust height as needed */
+    overflow-y: auto;
+    /* Scrollbar appears on the right if content is long */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
 }
 
 /* Responsive tweak for the unified gallery wrapper */
@@ -781,12 +885,15 @@ body {
         min-height: 40vh;
     }
 }
+
 /* 1. SCROLLABLE PRODUCT BOX */
 .gallery-scroll-container {
     max-width: 1300px;
     margin: 0 auto;
-    max-height: 700px; /* Limits height so scrollbar appears */
-    overflow-y: auto;  /* Vertical scroll */
+    max-height: 700px;
+    /* Limits height so scrollbar appears */
+    overflow-y: auto;
+    /* Vertical scroll */
     padding: 20px;
     border: 1px solid #eee;
     background: #fff;
@@ -796,25 +903,31 @@ body {
 .gallery-scroll-container::-webkit-scrollbar {
     width: 8px;
 }
+
 .gallery-scroll-container::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
+
 .gallery-scroll-container::-webkit-scrollbar-thumb {
     background: #111;
     border-radius: 10px;
 }
+
 /* Scrollbar Styling */
 .gallery-main-box::-webkit-scrollbar {
     width: 10px;
 }
+
 .gallery-main-box::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 0 12px 12px 0;
 }
+
 .gallery-main-box::-webkit-scrollbar-thumb {
     background: #222;
     border-radius: 10px;
 }
+
 /* Adjusting Internal Elements */
 .horizontal-nav-wrap {
     margin-bottom: 40px;
@@ -829,9 +942,10 @@ body {
     letter-spacing: 4px;
     text-transform: uppercase;
 }
+
 /* 2. LOCATION SECTION STYLES */
 .location-section {
-   padding: 80px 5%;
+    padding: 80px 5%;
     background: #f9f9f9;
     /* border-top: 1px solid #eee; */
 }
@@ -844,8 +958,16 @@ body {
     align-items: center;
 }
 
-.location-info { flex: 1; }
-.map-wrap { flex: 1.5; border-radius: 10px; overflow: hidden; height: 400px; }
+.location-info {
+    flex: 1;
+}
+
+.map-wrap {
+    flex: 1.5;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 400px;
+}
 
 .location-info .sub-heading {
     letter-spacing: 3px;
@@ -877,7 +999,8 @@ body {
     color: #555;
 }
 
-.contact-item address, .contact-item p {
+.contact-item address,
+.contact-item p {
     font-style: normal;
     color: #111;
     line-height: 1.6;
@@ -887,7 +1010,7 @@ body {
 .map-wrap {
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     height: 450px;
 }
 
@@ -897,6 +1020,7 @@ body {
         grid-template-columns: 1fr;
         gap: 40px;
     }
+
     .map-wrap {
         height: 300px;
     }
@@ -909,6 +1033,7 @@ body {
     padding: 40px 5% 20px;
     margin-top: 30px;
 }
+
 .footer-inner {
     max-width: 1200px;
     margin: 0 auto 18px;
@@ -918,40 +1043,54 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
 .footer-col {
     flex: 1 1 240px;
 }
+
 .footer-col .logo {
     font-weight: 800;
     font-size: 1.2rem;
     letter-spacing: 4px;
     margin-bottom: 12px;
 }
+
 .footer-col h4 {
     margin-bottom: 8px;
     color: #f8fafc;
 }
-.footer-col p, .footer-col a {
+
+.footer-col p,
+.footer-col a {
     color: #cbd5e1;
     font-size: 0.95rem;
     text-decoration: none;
 }
+
 .footer-col ul {
     list-style: none;
     padding: 0;
 }
+
 .footer-col ul li {
     margin-bottom: 8px;
 }
+
 .footer-bottom {
     text-align: center;
     color: #9aa7b3;
     font-size: 0.9rem;
     padding-top: 8px;
-    border-top: 1px solid rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 @media (max-width: 900px) {
-    .location-inner { grid-template-columns: 1fr; }
-    .footer-inner { flex-direction: column; gap: 20px; }
+    .location-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        gap: 20px;
+    }
 }
