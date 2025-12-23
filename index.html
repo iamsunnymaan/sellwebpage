@@ -3,39 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lithos | Hand-Carved Stone Sculptures</title>
+    <title>LITHOS | Luxury Stone Sculptures</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;500;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
+
+    <header class="main-header">
+        <div class="header-left">
             <div class="logo">LITHOS</div>
-            <ul>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Our Process</a></li>
-                <li><button id="cart-btn">Cart (<span id="cart-count">0</span>)</button></li>
+        </div>
+        <nav class="nav-box">
+            <ul class="nav-links">
+                <li><a href="#gallery">Gallery</a></li>
+                
+                <li class="dropdown">
+                    <a href="#">Products</a>
+                    <ul class="dropdown-content">
+                        <li class="sub-dropdown">
+                            <a href="#">Le Luxe</a>
+                            <ul class="sub-dropdown-content">
+                                <li><a href="#">Gajebo / Pergola</a></li>
+                                <li><a href="#">Stone Basin</a></li>
+                                <li><a href="#">Wall Murals</a></li>
+                                <li class="nested-dropdown">
+                                    <a href="#">Hardscape</a>
+                                    <ul class="nested-content">
+                                        <li><a href="#">Stone Sculptures</a></li>
+                                        <li><a href="#">Stone Fountains</a></li>
+                                        <li><a href="#">Partition</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Counter Top</a></li>
+                                <li><a href="#">Inlay</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-dropdown">
+                            <a href="#">Surface</a>
+                            <ul class="sub-dropdown-content">
+                                <li><a href="#">Sandstone Tiles</a></li>
+                                <li><a href="#">Limestone Tiles</a></li>
+                                <li><a href="#">Salestone Tiles</a></li>
+                                <li><a href="#">Basalt</a></li>
+                                <li><a href="#">Porcelain Tiles</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Temple</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Career</a></li>
             </ul>
         </nav>
+        <div class="header-right">
+            <a href="#" id="cart-btn" class="cart-text">Cart (<span id="cart-count">0</span>)</a>
+            <button class="connect-btn">Let's Connect</button>
+        </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>Timeless Art, Carved in Stone</h1>
-            <p>Handcrafted masterpieces from Italian marble and local granite.</p>
-        </section>
+    <section class="hero-container">
+        <div class="slider">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1554188248-986adbb73be4?w=1600')"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=1600')"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1600')"></div>
+            
+            <div class="hero-overlay">
+                <h1>Sculpted by Nature</h1>
+                <p>Refined by Human Hands</p>
+            </div>
+            <div class="slider-nav">
+                <button id="prev-btn">PREVIOUS</button>
+                <button id="next-btn">NEXT</button>
+            </div>
+        </div>
+    </section>
 
-        <section class="product-grid" id="product-container">
-            </section>
-    </main>
+    <section class="collection-bio">
+        <h2>Explore Our Luxury Stone Collection</h2>
+        <p>
+            Welcome to Stone Sculpteur, where nature meets master craftsmanship. We create timeless beauty using the finest Indian natural stones, offering elegant flooring and wall solutions along with exquisite sculptures, fountains, and artistic murals. Every creation reflects our commitment to superior quality, refined design, and exceptional craftsmanship, transforming ordinary spaces into enduring works of art.
+        </p>
+    </section>
+
+  
+<!-- MOVED: HORIZONTAL NAV BAR (now outside filtering box) -->
+<section class="horizontal-nav-section">
+    <div class="horizontal-nav-wrap">
+        <div class="horizontal-nav-container">
+            <nav class="horizontal-nav" aria-label="Product categories">
+                <ul class="h-nav-list">
+                    <li class="h-nav-item" data-cat="le-luxe">
+                        <button class="h-nav-btn">Le Luxe</button>
+                        <div class="h-submenu">
+                            <a href="#" data-cat="le-luxe" data-item="Gajebo / Pergola">Gajebo / Pergola</a>
+                            <a href="#" data-cat="le-luxe" data-item="Stone Basin">Stone Basin</a>
+                            <a href="#" data-cat="le-luxe" data-item="Wall Murals">Wall Murals</a>
+                            <a href="#" data-cat="le-luxe" data-item="Stone Sculptures">Stone Sculptures</a>
+                            <a href="#" data-cat="le-luxe" data-item="Stone Fountains">Stone Fountains</a>
+                            <a href="#" data-cat="le-luxe" data-item="Counter Top">Counter Top</a>
+                            <a href="#" data-cat="le-luxe" data-item="Inlay">Inlay</a>
+                        </div>
+                    </li>
+                    <li class="h-nav-item" data-cat="surface">
+                        <button class="h-nav-btn">Surface</button>
+                        <div class="h-submenu">
+                            <a href="#" data-cat="surface" data-item="Sandstone Tiles">Sandstone Tiles</a>
+                            <a href="#" data-cat="surface" data-item="Limestone Tiles">Limestone Tiles</a>
+                            <a href="#" data-cat="surface" data-item="Salestone Tiles">Salestone Tiles</a>
+                            <a href="#" data-cat="surface" data-item="Basalt">Basalt</a>
+                            <a href="#" data-cat="surface" data-item="Porcelain Tiles">Porcelain Tiles</a>
+                        </div>
+                    </li>
+                    <li class="h-nav-item" data-cat="temple">
+                        <button class="h-nav-btn">Temple</button>
+                        <div class="h-submenu">
+                            <a href="#" data-cat="temple" data-item="Temple Carvings">Temple Carvings</a>
+                            <a href="#" data-cat="temple" data-item="Pillars & Torans">Pillars & Torans</a>
+                        </div>
+                    </li>
+                    <li class="h-nav-item" data-cat="sculptures">
+                        <button class="h-nav-btn">Sculptures</button>
+                        <div class="h-submenu">
+                            <a href="#" data-cat="sculptures" data-item="Stone Sculptures">Stone Sculptures</a>
+                            <a href="#" data-cat="sculptures" data-item="Fountains">Fountains</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="unified-gallery-wrapper">
+    <div class="gallery-main-box">
+        <h2 class="section-title">The Collection</h2>
+        <div class="product-grid" id="product-container"></div>
+    </div>
+</section>
+
+
+  <section id="vertical-showroom" class="vertical-nav-container">
+        <div class="vertical-nav-left">
+            <h3 class="v-nav-title">Infrastructure</h3>
+            <ul class="v-nav-list">
+                <li class="v-nav-item active" onclick="showCategory('mines', this)">Mines</li>
+                <li class="v-nav-item" onclick="showCategory('manufacturing-units', this)">Manufacturing Units</li>
+                <li class="v-nav-item" onclick="showCategory('quality-control', this)">Quality Control</li>
+                <li class="v-nav-item" onclick="showCategory('packaging-unit', this)">Packaging Unit</li>
+            </ul>
+        </div>
+
+        <div class="vertical-nav-btw" id="category-media">
+            <!-- switching image will be injected here -->
+            <img src="img/grungy-gray-marble-textured-background.jpg" class="btw-image" alt="Infrastructure">
+        </div>
+
+        <div class="vertical-nav-right" id="category-display">
+            <div class="category-details">
+                <h3>Infrastructure</h3>
+                <p class="muted">Select a section to view images and details. Use <strong>Explore Categories</strong> to jump to the gallery.</p>
+                <button class="connect-btn explore-btn">Explore Categories</button>
+            </div>
+        </div>
+    </section>
+
+
+
+
+<section id="location" class="location-section">
+    <div class="location-inner">
+        <div class="location-info">
+            <span class="sub-heading">Find Us</span>
+            <h2>Our Showroom</h2>
+            <p>Experience the texture and elegance of our premium stone collection in person.</p>
+            
+            <div class="contact-details">
+                <div class="contact-item">
+                    <strong>Address:</strong>
+                    <address>123 Stone Lane, Industrial Area Phase II,<br>New Delhi, India 110020</address>
+                </div>
+                <div class="contact-item">
+                    <strong>Phone:</strong>
+                    <p>+91 98765 43210</p>
+                </div>
+                <div class="contact-item">
+                    <strong>Email:</strong>
+                    <p><a href="mailto:hello@lithos.example">hello@lithos.example</a></p>
+                </div>
+            </div>
+            <a class="connect-btn" href="https://maps.google.com" target="_blank" style="display: inline-block; margin-top: 20px;">Get Directions</a>
+        </div>
+
+        <div class="map-wrap">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.561914274246!2d77.22732107630232!3d28.612916675674315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2daa9eb4d0b%3A0x71797112fd92f00!2sIndia%20Gate!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+    <!-- SITE FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col brand">
+                <div class="logo">LITHOS</div>
+                <p>Crafting timeless stone pieces with premium natural stones and master craftsmanship.</p>
+            </div>
+            <div class="footer-col links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#vertical-showroom">Showroom</a></li>
+                    <li><a href="#location">Location</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col contact">
+                <h4>Contact</h4>
+                <p>Phone: +91 98765 43210</p>
+                <p>Email: <a href="mailto:hello@lithos.example">hello@lithos.example</a></p>
+                <p>Mon - Sat, 9am - 6pm</p>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2025 LITHOS. All rights reserved.</div>
+    </footer>
 
     <div id="cart-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Your Selection</h2>
             <div id="cart-items"></div>
-            <hr>
-            <p>Total: $<span id="cart-total">0</span></p>
-            <button class="checkout-btn">Proceed to Checkout</button>
+            <div class="cart-total">Total: $<span id="cart-total">0</span></div>
+            <button class="connect-btn" style="width: 100%; margin-top: 20px;">Checkout</button>
+        </div>
+    </div>
+
+    <!-- PRODUCT VIEW MODAL -->
+    <div id="product-modal" class="modal" aria-hidden="true">
+        <div class="modal-content product-modal-content">
+            <span id="product-modal-close" class="close" aria-label="Close">&times;</span>
+            <img class="modal-image" src="" alt="Product image">
+            <h3 class="modal-title"></h3>
+            <p class="modal-price" style="color:#888; margin-top:6px"></p>
+            <div class="modal-actions" style="margin-top:14px">
+                <button class="connect-btn" id="modal-enquire-btn">Enquire</button>
+                <button class="connect-btn" id="modal-addcart-btn">Add to Collection</button>
+            </div>
         </div>
     </div>
 
