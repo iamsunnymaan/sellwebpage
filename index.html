@@ -32,11 +32,10 @@
                                     <a href="#">Hardscape</a>
                                     <ul class="nested-content">
                                         <li><a href="#">Stone Sculptures</a></li>
-                                        <li><a href="#">Stone Fountains</a></li>
-                                        <li><a href="#">Partition</a></li>
+                                        <li><a href="#">Fountains</a></li>
+                                        <li><a href="#">Partitions</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">Counter Top</a></li>
                                 <li><a href="#">Inlay</a></li>
                             </ul>
                         </li>
@@ -50,7 +49,20 @@
                                 <li><a href="#">Porcelain Tiles</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Temple</a></li>
+                        <li class="sub-dropdown">
+                            <a href="#">Temple</a>
+                            <ul class="sub-dropdown-content">
+                                <li><a href="#">Temple Carvings</a></li>
+                                <li><a href="#">Pillars & Torans</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-dropdown">
+                            <a href="#">Sculptures</a>
+                            <ul class="sub-dropdown-content">
+                                <li><a href="#">Stone Sculptures</a></li>
+                                <li><a href="#">Fountains</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
 
@@ -108,9 +120,7 @@
                             <a href="#" data-cat="le-luxe" data-item="Gajebo / Pergola">Gajebo / Pergola</a>
                             <a href="#" data-cat="le-luxe" data-item="Stone Basin">Stone Basin</a>
                             <a href="#" data-cat="le-luxe" data-item="Wall Murals">Wall Murals</a>
-                            <a href="#" data-cat="le-luxe" data-item="Stone Sculptures">Stone Sculptures</a>
-                            <a href="#" data-cat="le-luxe" data-item="Stone Fountains">Stone Fountains</a>
-                            <a href="#" data-cat="le-luxe" data-item="Counter Top">Counter Top</a>
+                            <a href="#" data-cat="le-luxe" data-item="Hardscape">Hardscape</a>
                             <a href="#" data-cat="le-luxe" data-item="Inlay">Inlay</a>
                         </div>
                     </li>
@@ -148,96 +158,6 @@
 </section>
 
 <section class="unified-gallery-wrapper">
-    <aside class="filter-sidebar" id="filter-sidebar">
-        <h3 class="filter-title">Filters</h3>
-        
-        <div class="filter-group">
-            <h4>Products & Collections</h4>
-            
-            <div class="filter-dropdown">
-                <div class="filter-dropdown-header" data-toggle="le-luxe-dropdown">
-                    <label class="main-category">
-                        <input type="checkbox" name="category" value="le-luxe" class="parent-checkbox">
-                        <span>Le Luxe</span>
-                    </label>
-                    <span class="dropdown-arrow">▼</span>
-                </div>
-                <div class="filter-dropdown-content" id="le-luxe-dropdown">
-                    <label><input type="checkbox" name="collection" value="gajebo-pergola" data-parent="le-luxe"> Gajebo / Pergola</label>
-                    <label><input type="checkbox" name="collection" value="stone-basin" data-parent="le-luxe"> Stone Basin</label>
-                    <label><input type="checkbox" name="collection" value="wall-murals" data-parent="le-luxe"> Wall Murals</label>
-                    <label><input type="checkbox" name="collection" value="stone-sculptures" data-parent="le-luxe"> Stone Sculptures</label>
-                    <label><input type="checkbox" name="collection" value="stone-fountains" data-parent="le-luxe"> Stone Fountains</label>
-                    <label><input type="checkbox" name="collection" value="counter-top" data-parent="le-luxe"> Counter Top</label>
-                    <label><input type="checkbox" name="collection" value="inlay" data-parent="le-luxe"> Inlay</label>
-                </div>
-            </div>
-            
-            <div class="filter-dropdown">
-                <div class="filter-dropdown-header" data-toggle="surface-dropdown">
-                    <label class="main-category">
-                        <input type="checkbox" name="category" value="surface" class="parent-checkbox">
-                        <span>Surface</span>
-                    </label>
-                    <span class="dropdown-arrow">▼</span>
-                </div>
-                <div class="filter-dropdown-content" id="surface-dropdown">
-                    <label><input type="checkbox" name="collection" value="sandstone-tiles" data-parent="surface"> Sandstone Tiles</label>
-                    <label><input type="checkbox" name="collection" value="limestone-tiles" data-parent="surface"> Limestone Tiles</label>
-                    <label><input type="checkbox" name="collection" value="salestone-tiles" data-parent="surface"> Salestone Tiles</label>
-                    <label><input type="checkbox" name="collection" value="basalt" data-parent="surface"> Basalt</label>
-                    <label><input type="checkbox" name="collection" value="porcelain-tiles" data-parent="surface"> Porcelain Tiles</label>
-                </div>
-            </div>
-            
-            <div class="filter-dropdown">
-                <div class="filter-dropdown-header" data-toggle="temple-dropdown">
-                    <label class="main-category">
-                        <input type="checkbox" name="category" value="temple" class="parent-checkbox">
-                        <span>Temple</span>
-                    </label>
-                    <span class="dropdown-arrow">▼</span>
-                </div>
-                <div class="filter-dropdown-content" id="temple-dropdown">
-                    <label><input type="checkbox" name="collection" value="temple-carvings" data-parent="temple"> Temple Carvings</label>
-                    <label><input type="checkbox" name="collection" value="pillars-torans" data-parent="temple"> Pillars & Torans</label>
-                </div>
-            </div>
-            
-            <div class="filter-dropdown">
-                <div class="filter-dropdown-header" data-toggle="sculptures-dropdown">
-                    <label class="main-category">
-                        <input type="checkbox" name="category" value="sculptures" class="parent-checkbox">
-                        <span>Sculptures</span>
-                    </label>
-                    <span class="dropdown-arrow">▼</span>
-                </div>
-                <div class="filter-dropdown-content" id="sculptures-dropdown">
-                    <label><input type="checkbox" name="collection" value="stone-sculptures-art" data-parent="sculptures"> Stone Sculptures</label>
-                    <label><input type="checkbox" name="collection" value="fountains" data-parent="sculptures"> Fountains</label>
-                </div>
-            </div>
-        </div>
-        
-        <div class="filter-group">
-            <h4>Price Range</h4>
-            <label><input type="radio" name="price" value="all" checked> All Prices</label>
-            <label><input type="radio" name="price" value="low"> Under $2,000</label>
-            <label><input type="radio" name="price" value="mid"> $2,000 - $4,000</label>
-            <label><input type="radio" name="price" value="high"> Above $4,000</label>
-        </div>
-        
-        <div class="filter-group">
-            <h4>Material</h4>
-            <label><input type="checkbox" name="material" value="marble"> Marble</label>
-            <label><input type="checkbox" name="material" value="sandstone"> Sandstone</label>
-            <label><input type="checkbox" name="material" value="limestone"> Limestone</label>
-            <label><input type="checkbox" name="material" value="basalt"> Basalt</label>
-        </div>
-        
-        <button class="connect-btn" id="apply-filters" style="width: 100%; margin-top: 20px;">Apply Filters</button>
-        <button class="connect-btn" id="clear-filters" style="width: 100%; margin-top: 10px; background: #fff; color: #111; border: 1px solid #ddd;">Clear All</button>
-    </aside>
     <div class="gallery-main-box">
         <div class="gallery-header" id="gallery-header">
             <div class="breadcrumb-nav">

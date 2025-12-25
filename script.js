@@ -397,6 +397,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Reset to show all products
             renderProducts();
             
+            // Clear breadcrumb
+            const categoryNameEl = document.getElementById('category-name');
+            const arrowSep = document.getElementById('arrow-separator');
+            if (categoryNameEl) categoryNameEl.textContent = '';
+            if (arrowSep) arrowSep.style.display = 'none';
+            
             // Remove active class from all nav items in horizontal nav
             document.querySelectorAll('.h-nav-item').forEach(item => {
                 item.classList.remove('active');
@@ -416,6 +422,12 @@ document.addEventListener('DOMContentLoaded', () => {
         allCollectionBtn.addEventListener('click', () => {
             // Reset to show all products
             renderProducts();
+            
+            // Clear breadcrumb
+            const categoryNameEl = document.getElementById('category-name');
+            const arrowSep = document.getElementById('arrow-separator');
+            if (categoryNameEl) categoryNameEl.textContent = '';
+            if (arrowSep) arrowSep.style.display = 'none';
             
             // Remove active class from all nav items
             document.querySelectorAll('.h-nav-item').forEach(item => {
@@ -624,8 +636,23 @@ function initHorizontalNav() {
             const li = btn.closest('.h-nav-item');
             const cat = li.dataset.cat;
 
-            // Render gallery for this category
-            renderCategoryGallery(cat);
+            // Filter and render products for this category
+            const filteredProducts = products.filter(p => p.category === cat);
+            renderProducts(filteredProducts);
+            
+            // Update breadcrumb
+            const categoryNameEl = document.getElementById('category-name');
+            const arrowSep = document.getElementById('arrow-separator');
+            if (categoryNameEl && arrowSep) {
+                const categoryNames = {
+                    'le-luxe': 'Le Luxe',
+                    'surface': 'Surface',
+                    'temple': 'Temple',
+                    'sculptures': 'Sculptures'
+                };
+                categoryNameEl.textContent = categoryNames[cat] || cat;
+                arrowSep.style.display = 'inline';
+            }
             
             // Add active class to clicked item, remove from siblings
             Array.from(li.parentElement.children).forEach(sib => {
@@ -647,6 +674,12 @@ function initHorizontalNav() {
                     if (sibBtn) sibBtn.setAttribute('aria-expanded', 'false');
                 }
             });
+            
+            // Scroll to gallery section
+            const gallery = document.querySelector('.unified-gallery-wrapper');
+            if (gallery) {
+                gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
     });
 
@@ -656,13 +689,40 @@ function initHorizontalNav() {
             e.preventDefault();
             const cat = a.dataset.cat;
             const item = a.dataset.item;
-            // Render details and gallery
-            if (typeof showProductCategory === 'function') showProductCategory(cat, item);
-            renderCategoryGallery(cat, item);
+            
+            // Convert item name to collection value
+            // "Gajebo / Pergola" -> "gajebo-pergola"
+            // "Stone Basin" -> "stone-basin"
+            const collectionValue = item.toLowerCase()
+                .replace(/\s*\/\s*/g, '-')  // Replace " / " with "-"
+                .replace(/\s+/g, '-')        // Replace spaces with "-"
+                .replace(/&/g, '')           // Remove ampersands
+                .replace(/-+/g, '-');        // Replace multiple dashes with single dash
+            
+            // Filter products by both category and collection
+            const filteredProducts = products.filter(p => {
+                return p.category === cat && p.collection === collectionValue;
+            });
+            
+            renderProducts(filteredProducts);
+            
+            // Update breadcrumb
+            const categoryNameEl = document.getElementById('category-name');
+            const arrowSep = document.getElementById('arrow-separator');
+            if (categoryNameEl && arrowSep) {
+                categoryNameEl.textContent = item;
+                arrowSep.style.display = 'inline';
+            }
 
             // Close any open submenu on click (mobile expectation)
             Array.from(nav.querySelectorAll('.h-nav-item.open')).forEach(n => n.classList.remove('open', 'on-top'));
             nav.querySelectorAll('.h-nav-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
+            
+            // Scroll to gallery section
+            const gallery = document.querySelector('.unified-gallery-wrapper');
+            if (gallery) {
+                gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
     });
 
@@ -682,59 +742,6 @@ function initHorizontalNav() {
         }
     });
 }
-
-// --- Render gallery for given category or item ---
-function renderCategoryGallery(catId, selectedItem) {
-    const cat = productCategories[catId];
-    const container = document.getElementById('product-container');
-    const galleryHeader = document.getElementById('gallery-header');
-    const categoryNameEl = document.getElementById('category-name');
-    const arrowSep = document.getElementById('arrow-separator');
-    
-    if (!cat || !container) return;
-
-    // Update gallery header background image
-    if (galleryHeader && cat.img) {
-        galleryHeader.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${cat.img}')`;
-    }
-
-    // Update breadcrumb navigation
-    if (selectedItem) {
-        categoryNameEl.textContent = selectedItem;
-        arrowSep.style.display = 'inline';
-    } else {
-        categoryNameEl.textContent = cat.title;
-        arrowSep.style.display = 'inline';
-    }
-
-    // Build an array of item objects to render as cards; if selectedItem provided, show only that
-    const items = selectedItem ? [selectedItem] : cat.items;
-
-    // Clear existing gallery
-    container.innerHTML = '';
-
-    // Populate gallery with cards for each item
-    items.forEach(name => {
-        const imgUrl = `https://source.unsplash.com/600x400/?${encodeURIComponent(name)}`;
-        const price = Math.floor(500 + Math.random() * 5000);
-        container.innerHTML += `
-            <div class="card">
-                <img src="${imgUrl}" alt="${name}">
-                <h3 style="margin-top:20px">${name}</h3>
-                <p style="color: #888; margin: 10px 0">$${price.toLocaleString()}</p>
-                <div style="display:flex; gap:10px; margin-top:12px">
-                    <button class="connect-btn" style="flex:1" onclick="enquireProduct('${encodeURIComponent(name)}')">Enquire</button>
-                    <button class="connect-btn" style="flex:1" onclick="viewProduct('${encodeURIComponent(name)}', ${price})">View Product</button>
-                </div>
-            </div>
-        `;
-    });
-
-    // Scroll to gallery for visibility on mobile
-    document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
-}
-
-
 
 // --- RENDER SHOP ---
 function renderProducts(filteredProducts = null) {
