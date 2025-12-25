@@ -11,11 +11,12 @@
 
     <header class="main-header">
         <div class="header-left">
-            <div class="logo">LITHOS</div>
+            <a href="#" class="logo" id="logo-link">LITHOS</a>
         </div>
-        <nav class="nav-box">
+        <nav class="nav-box" id="nav-box">
             <ul class="nav-links">
-                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#" id="home-link">Home</a></li>
+                <li><a href="#" id="gallery-link">Gallery</a></li>
                 
                 <li class="dropdown">
                     <a href="#">Products</a>
@@ -52,12 +53,12 @@
                     </ul>
                 </li>
 
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Career</a></li>
+                <li><a href="#b2b" id="b2b-link">B2B</a></li>
+                <li><a href="#about" id="about-link">About</a></li>
             </ul>
         </nav>
         <div class="header-right">
-            <a href="#" id="cart-btn" class="cart-text">Cart (<span id="cart-count">0</span>)</a>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
             <button class="connect-btn">Let's Connect</button>
         </div>
     </header>
@@ -93,6 +94,10 @@
 <section class="horizontal-nav-section">
     <div class="horizontal-nav-wrap">
         <div class="horizontal-nav-container">
+            <button class="all-collection-btn" id="all-collection-btn">
+                <span class="home-icon">⌂</span>
+                All Collection
+            </button>
             <nav class="horizontal-nav" aria-label="Product categories">
                 <ul class="h-nav-list">
                     <li class="h-nav-item" data-cat="le-luxe">
@@ -134,7 +139,6 @@
                 </ul>
             </nav>
             <div class="h-nav-right">
-                <a href="#" id="h-cart-btn" class="cart-text">Cart (<span id="h-cart-count">0</span>)</a>
                 <button class="connect-btn">Let's Connect</button>
             </div>
         </div>
@@ -142,10 +146,6 @@
 </section>
 
 <section class="unified-gallery-wrapper">
-    <div class="gallery-main-box">
-        <h2 class="section-title">The Collection</h2>
-        <div class="product-grid" id="product-container"></div>
-    </div>
     <aside class="filter-sidebar">
         <h3 class="filter-title">Filters</h3>
         
@@ -176,6 +176,16 @@
         <button class="connect-btn" id="apply-filters" style="width: 100%; margin-top: 20px;">Apply Filters</button>
         <button class="connect-btn" id="clear-filters" style="width: 100%; margin-top: 10px; background: #fff; color: #111; border: 1px solid #ddd;">Clear All</button>
     </aside>
+    <div class="gallery-main-box">
+        <div class="gallery-header" id="gallery-header">
+            <div class="breadcrumb-nav">
+                <span class="collection-text">The Collection</span>
+                <span class="arrow-separator" id="arrow-separator" style="display: none;">→</span>
+                <span class="category-name" id="category-name"></span>
+            </div>
+        </div>
+        <div class="product-grid" id="product-container"></div>
+    </div>
 </section>
 
  <section id="vertical-showroom" class="vertical-nav-container">
@@ -203,6 +213,134 @@
         </div>
     </section>
 
+<section id="b2b" class="b2b-section">
+    <div class="b2b-inner">
+        <div class="b2b-content">
+            <span class="sub-heading">Trade & Wholesale</span>
+            <h2>Partner with LITHOS</h2>
+            <p class="b2b-intro">Elevate your projects with our premium stone collection. We supply to architects, interior designers, contractors, and hospitality groups worldwide.</p>
+            
+            <div class="b2b-benefits">
+                <div class="b2b-benefit-item">
+                    <h4>Bulk Pricing</h4>
+                    <p>Competitive rates for large orders and recurring projects</p>
+                </div>
+                <div class="b2b-benefit-item">
+                    <h4>Custom Solutions</h4>
+                    <p>Bespoke designs tailored to your architectural vision</p>
+                </div>
+                <div class="b2b-benefit-item">
+                    <h4>Direct Sourcing</h4>
+                    <p>From our quarries to your project site with quality assurance</p>
+                </div>
+                <div class="b2b-benefit-item">
+                    <h4>Global Shipping</h4>
+                    <p>Reliable logistics and timely delivery across continents</p>
+                </div>
+            </div>
+            
+            <div class="b2b-cta">
+                <button class="connect-btn">Request B2B Catalog</button>
+                <button class="connect-btn" style="background: transparent; color: #111; border: 2px solid #111;">Schedule Consultation</button>
+            </div>
+        </div>
+        
+        <div class="b2b-image">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800" alt="Professional workspace">
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about-section">
+    <div class="about-inner">
+        <div class="about-text">
+            <span class="sub-heading">Our Story</span>
+            <h2>About LITHOS</h2>
+            <p class="about-intro">LITHOS is a premier luxury stone manufacturer and supplier, bringing over two decades of expertise in crafting exquisite natural stone products. From our private quarries to your architectural masterpiece, we ensure every piece meets the highest standards of quality and elegance.</p>
+            
+            <div class="about-features">
+                <div class="about-feature">
+                    <h4>20+ Years</h4>
+                    <p>Of Excellence in Stone Craftsmanship</p>
+                </div>
+                <div class="about-feature">
+                    <h4>5000+ Projects</h4>
+                    <p>Delivered Worldwide</p>
+                </div>
+                <div class="about-feature">
+                    <h4>50+ Countries</h4>
+                    <p>Global Export Network</p>
+                </div>
+            </div>
+            
+            <p class="about-desc">Our state-of-the-art manufacturing facilities are equipped with Italian precision machinery, allowing us to transform raw stone into breathtaking works of art. We specialize in marble, sandstone, limestone, and granite products that elevate spaces from ordinary to extraordinary.</p>
+            
+            <p class="about-desc">With a commitment to sustainability, we source responsibly and implement eco-friendly practices throughout our production process. Our team of skilled artisans and designers work tirelessly to bring your vision to life, whether it's a grand hotel lobby, a luxury residence, or a commercial space.</p>
+        </div>
+        
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800" alt="LITHOS manufacturing facility">
+            <div class="about-image-overlay">
+                <p>"Excellence in Every Stone"</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="certificates" class="certificates-section">
+    <div class="certificates-inner">
+        <div class="certificates-header">
+            <span class="sub-heading">Trust & Quality</span>
+            <h2>Our Certifications</h2>
+            <p>Recognized for excellence and trusted by industry leaders worldwide</p>
+        </div>
+        
+        <div class="certificates-grid">
+            <div class="certificate-card">
+                <div class="certificate-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </div>
+                <h3>OTABU Certificate</h3>
+                <p class="cert-number">Certificate No: OTABU/2023/45678</p>
+                <p>Certified by the Office of Textile and Allied Business Undertakings, ensuring quality standards in stone manufacturing and export operations.</p>
+                <span class="cert-badge">Verified 2024</span>
+            </div>
+            
+            <div class="certificate-card">
+                <div class="certificate-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+                        <path d="M9 22V12H15V22"/>
+                    </svg>
+                </div>
+                <h3>UDYAM Registration</h3>
+                <p class="cert-number">UDYAM-DL-12-3456789</p>
+                <p>Officially registered under the Ministry of Micro, Small and Medium Enterprises (MSME), Government of India.</p>
+                <span class="cert-badge">Active</span>
+            </div>
+            
+            <div class="certificate-card">
+                <div class="certificate-icon">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6V12L16 14"/>
+                    </svg>
+                </div>
+                <h3>IEC Certificate</h3>
+                <p class="cert-number">IEC: 0523456789</p>
+                <p>Import Export Code issued by the Directorate General of Foreign Trade (DGFT), enabling seamless international trade operations.</p>
+                <span class="cert-badge">Valid</span>
+            </div>
+        </div>
+        
+        <div class="certificates-footer">
+            <p>All certifications are renewed annually and comply with international trade regulations</p>
+            <button class="connect-btn">Download Certificate Copies</button>
+        </div>
+    </div>
+</section>
 
 <section id="location" class="location-section">
     <div class="location-inner">
@@ -262,16 +400,6 @@
         </div>
         <div class="footer-bottom">&copy; 2025 LITHOS. All rights reserved.</div>
     </footer>
-
-    <div id="cart-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Your Selection</h2>
-            <div id="cart-items"></div>
-            <div class="cart-total">Total: $<span id="cart-total">0</span></div>
-            <button class="connect-btn" style="width: 100%; margin-top: 20px;">Checkout</button>
-        </div>
-    </div>
 
     <script src="script.js"></script>
 </body>

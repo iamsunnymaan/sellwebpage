@@ -7,7 +7,6 @@ const products = [
 ];
 
 const categoryData = {
-    // ... keep your existing sculpture/flooring data if needed ...
     'mines': {
         title: "Our Private Mines",
         desc: "We source our raw stone directly from premium quarries, ensuring the highest grade of natural marble and sandstone from the very start.",
@@ -30,14 +29,113 @@ const categoryData = {
     }
 };
 
-let cart = [];
-
 // --- INITIALIZE PAGE ---
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
 
+    // Initialize mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const navBox = document.getElementById('nav-box');
+    
+    if (mobileMenuToggle && navBox) {
+        mobileMenuToggle.addEventListener('click', () => {
+            navBox.classList.toggle('active');
+            const isActive = navBox.classList.contains('active');
+            mobileMenuToggle.textContent = isActive ? '✕' : '☰';
+            mobileMenuToggle.setAttribute('aria-expanded', isActive);
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navBox.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                navBox.classList.remove('active');
+                mobileMenuToggle.textContent = '☰';
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close menu when clicking a nav link
+        const navLinks = navBox.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 900) {
+                    navBox.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    }
+
     // initialize horizontal nav after DOM ready
     if (typeof initHorizontalNav === 'function') initHorizontalNav();
+    
+    // Logo click - go to hero/home section
+    const logoLink = document.getElementById('logo-link');
+    if (logoLink) {
+        logoLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+    
+    // Home link - go to hero/home section
+    const homeLink = document.getElementById('home-link');
+    if (homeLink) {
+        homeLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+    
+    // Gallery link - open all collection section
+    const galleryLink = document.getElementById('gallery-link');
+    if (galleryLink) {
+        galleryLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Reset to show all products
+            renderProducts();
+            
+            // Remove active class from all nav items in horizontal nav
+            document.querySelectorAll('.h-nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Scroll to gallery section
+            const gallery = document.querySelector('.unified-gallery-wrapper');
+            if (gallery) {
+                gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
+    
+    // Add event listener for All Collection button
+    const allCollectionBtn = document.getElementById('all-collection-btn');
+    if (allCollectionBtn) {
+        allCollectionBtn.addEventListener('click', () => {
+            // Reset to show all products
+            renderProducts();
+            
+            // Remove active class from all nav items
+            document.querySelectorAll('.h-nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Close any open submenus
+            document.querySelectorAll('.h-nav-item.open').forEach(item => {
+                item.classList.remove('open', 'on-top');
+            });
+            document.querySelectorAll('.h-nav-btn').forEach(btn => {
+                btn.setAttribute('aria-expanded', 'false');
+            });
+            
+            // Scroll to gallery section
+            const gallery = document.querySelector('.unified-gallery-wrapper');
+            if (gallery) {
+                gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
 });
 
 // --- Horizontal nav product categories (used by the center long bar) ---
@@ -124,6 +222,12 @@ function initHorizontalNav() {
 
             // Render gallery for this category
             renderCategoryGallery(cat);
+            
+            // Add active class to clicked item, remove from siblings
+            Array.from(li.parentElement.children).forEach(sib => {
+                sib.classList.remove('active');
+            });
+            li.classList.add('active');
 
             const isOpen = li.classList.toggle('open');
             btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
@@ -179,17 +283,31 @@ function initHorizontalNav() {
 function renderCategoryGallery(catId, selectedItem) {
     const cat = productCategories[catId];
     const container = document.getElementById('product-container');
+    const galleryHeader = document.getElementById('gallery-header');
+    const categoryNameEl = document.getElementById('category-name');
+    const arrowSep = document.getElementById('arrow-separator');
+    
     if (!cat || !container) return;
+
+    // Update gallery header background image
+    if (galleryHeader && cat.img) {
+        galleryHeader.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${cat.img}')`;
+    }
+
+    // Update breadcrumb navigation
+    if (selectedItem) {
+        categoryNameEl.textContent = selectedItem;
+        arrowSep.style.display = 'inline';
+    } else {
+        categoryNameEl.textContent = cat.title;
+        arrowSep.style.display = 'inline';
+    }
 
     // Build an array of item objects to render as cards; if selectedItem provided, show only that
     const items = selectedItem ? [selectedItem] : cat.items;
 
     // Clear existing gallery
     container.innerHTML = '';
-
-    // Render heading above gallery to show current category
-    const heading = document.querySelector('#gallery .section-title');
-    if (heading) heading.textContent = cat.title;
 
     // Populate gallery with cards for each item
     items.forEach(name => {
@@ -396,45 +514,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('next-btn').onclick = () => moveSlide(1);
     document.getElementById('prev-btn').onclick = () => moveSlide(-1);
 });
-
-// --- CART LOGIC ---
-function updateCartCount() {
-    const count = cart.length;
-    document.getElementById('cart-count').innerText = count;
-    const hCartCount = document.getElementById('h-cart-count');
-    if (hCartCount) hCartCount.innerText = count;
-}
-
-function addToCart(id) {
-    const product = products.find(p => p.id === id);
-    cart.push(product);
-    updateCartCount();
-    alert(`${product.name} added to your selection.`);
-}
-
-const modal = document.getElementById("cart-modal");
-document.getElementById("cart-btn").onclick = (e) => {
-    e.preventDefault();
-    modal.style.display = "block";
-    renderCart();
-};
-
-const hCartBtn = document.getElementById("h-cart-btn");
-if (hCartBtn) {
-    hCartBtn.onclick = (e) => {
-        e.preventDefault();
-        modal.style.display = "block";
-        renderCart();
-    };
-}
-
-function renderCart() {
-    const itemsDiv = document.getElementById('cart-items');
-    itemsDiv.innerHTML = cart.map(item => `<div style="padding:10px 0; border-bottom:1px solid #eee">${item.name} - $${item.price.toLocaleString()}</div>`).join('');
-    document.getElementById('cart-total').innerText = cart.reduce((s, i) => s + i.price, 0).toLocaleString();
-}
-document.querySelector(".close").onclick = () => modal.style.display = "none";
-window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
 
 // --- DROPDOWN TOUCH/CLICK SUPPORT & ACCESSIBILITY ---
 (function() {
