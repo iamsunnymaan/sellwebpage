@@ -239,75 +239,176 @@ function enquireProduct(encodedName) {
 
 function viewProduct(encodedName, price) {
     const name = decodeURIComponent(encodedName);
-    const imgUrl = `https://source.unsplash.com/900x600/?${encodeURIComponent(name)}`;
-    const modal = document.getElementById('product-modal');
-    if (!modal) return;
-
-    modal.querySelector('.modal-image').src = imgUrl;
-    modal.querySelector('.modal-image').alt = name;
-    modal.querySelector('.modal-title').textContent = name;
-    modal.querySelector('.modal-price').textContent = `$${price.toLocaleString()}`;
-
-    // set modal action buttons
-    const enquireBtn = document.getElementById('modal-enquire-btn');
-    const addCartBtn = document.getElementById('modal-addcart-btn');
-    enquireBtn.onclick = () => enquireProduct(encodeURIComponent(name));
-    addCartBtn.onclick = () => { alert(`${name} added to your collection.`); };
-
-    modal.style.display = 'block';
+    alert(`${name} - $${price.toLocaleString()}\n\nClick "Enquire" to get more details about this product.`);
 }
 
-// close product modal
-document.addEventListener('DOMContentLoaded', () => {
-    const pModal = document.getElementById('product-modal');
-    if (!pModal) return;
-    document.getElementById('product-modal-close').onclick = () => pModal.style.display = 'none';
-    window.addEventListener('click', (e) => { if (e.target == pModal) pModal.style.display = 'none'; });
-});
-
 // --- VERTICAL NAV LOGIC ---
+// --- VERTICAL SHOWROOM AUTO-CYCLE ---
+const categories = ['mines', 'manufacturing-units', 'quality-control', 'packaging-unit'];
+let currentCategoryIndex = 0;
+let categoryAutoplayInterval;
+
 function showCategory(cat, element) {
     // 1. Handle Active Tab Styling
     document.querySelectorAll('.v-nav-item').forEach(item => item.classList.remove('active'));
-    element.classList.add('active');
+    
+    if (element) {
+        element.classList.add('active');
+    } else {
+        // Find and activate the element by category name
+        const items = document.querySelectorAll('.v-nav-item');
+        items.forEach((item, index) => {
+            if (categories[index] === cat) {
+                item.classList.add('active');
+            }
+        });
+    }
 
     const data = categoryData[cat];
     if (!data) return;
 
-    // 2. Update the Center Image
+    // 2. Update the Center Image with smooth fade and scale transition
     const mediaContainer = document.getElementById('category-media');
-    // We update the source of the image. For a smoother transition, 
-    // you can target a single image tag rather than multiple.
-    mediaContainer.innerHTML = `<img src="${data.img}" class="btw-image" alt="${data.title}">`;
+    const currentImg = mediaContainer.querySelector('.btw-image');
+    
+    // Fade out and scale down current image
+    if (currentImg) {
+        currentImg.style.opacity = '0';
+        currentImg.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            mediaContainer.innerHTML = `<img src="${data.img}" class="btw-image" alt="${data.title}" style="opacity: 0; transform: scale(1.05);">`;
+            // Fade in and scale to normal
+            setTimeout(() => {
+                const newImg = mediaContainer.querySelector('.btw-image');
+                if (newImg) {
+                    newImg.style.opacity = '1';
+                    newImg.style.transform = 'scale(1)';
+                }
+            }, 50);
+        }, 500);
+    } else {
+        // First load
+        mediaContainer.innerHTML = `<img src="${data.img}" class="btw-image" alt="${data.title}" style="opacity: 0; transform: scale(1.05);">`;
+        setTimeout(() => {
+            const newImg = mediaContainer.querySelector('.btw-image');
+            if (newImg) {
+                newImg.style.opacity = '1';
+                newImg.style.transform = 'scale(1)';
+            }
+        }, 50);
+    }
 
-    // 3. Update the Right Section Content
+    // 3. Update the Right Section Content with smooth fade and slide
     const display = document.getElementById('category-display');
-    display.innerHTML = `
-        <div class="category-details">
-            <h3 class="v-nav-list" style="border:none; color:#111; font-size: 1.6rem; font-weight: 600;">${data.title}</h3>
-            <p class="muted">${data.desc}</p>
-            <button class="connect-btn explore-btn">Explore Categories</button>
-        </div>
-    `;
+    display.style.opacity = '0';
+    display.style.transform = 'translateX(20px)';
+    
+    setTimeout(() => {
+        display.innerHTML = `
+            <div class="category-details">
+                <h3 class="v-nav-list" style="border:none; color:#111; font-size: 1.6rem; font-weight: 600;">${data.title}</h3>
+                <p class="muted">${data.desc}</p>
+                <button class="connect-btn explore-btn">Explore Categories</button>
+            </div>
+        `;
+        setTimeout(() => {
+            display.style.opacity = '1';
+            display.style.transform = 'translateX(0)';
+        }, 50);
+    }, 500);
+    
+    // Update currentCategoryIndex
+    currentCategoryIndex = categories.indexOf(cat);
+    
+    // Reset autoplay timer
+    clearInterval(categoryAutoplayInterval);
+    startCategoryAutoplay();
 }
 
-// --- HERO SLIDER ---
+function nextCategory() {
+    currentCategoryIndex = (currentCategoryIndex + 1) % categories.length;
+    showCategory(categories[currentCategoryIndex]);
+}
+
+function startCategoryAutoplay() {
+    categoryAutoplayInterval = setInterval(() => {
+        nextCategory();
+    }, 5000); // Change category every 5 seconds
+}
+
+// Initialize autoplay and display first category on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Show initial category (mines) with image
+    showCategory('mines');
+    // Start autoplay
+    startCategoryAutoplay();
+});
+
+// --- HERO SLIDER WITH LUXURY BLACKOUT FADE ---
 const slides = document.querySelectorAll('.slide');
+const bulletNav = document.getElementById('bullet-nav');
 let currentSlide = 0;
+let sliderInterval;
+
+// Create bullet points
+function initBullets() {
+    slides.forEach((_, index) => {
+        const bullet = document.createElement('button');
+        bullet.classList.add('bullet');
+        if (index === 0) bullet.classList.add('active');
+        bullet.setAttribute('aria-label', `Go to slide ${index + 1}`);
+        bullet.onclick = () => goToSlide(index);
+        bulletNav.appendChild(bullet);
+    });
+}
+
+function updateBullets() {
+    document.querySelectorAll('.bullet').forEach((bullet, index) => {
+        bullet.classList.toggle('active', index === currentSlide);
+    });
+}
+
 function moveSlide(step) {
     slides[currentSlide].classList.remove('active');
     currentSlide = (currentSlide + step + slides.length) % slides.length;
     slides[currentSlide].classList.add('active');
+    updateBullets();
+    resetSliderInterval();
 }
-setInterval(() => moveSlide(1), 6000);
-document.getElementById('next-btn').onclick = () => moveSlide(1);
-document.getElementById('prev-btn').onclick = () => moveSlide(-1);
+
+function goToSlide(index) {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = index;
+    slides[currentSlide].classList.add('active');
+    updateBullets();
+    resetSliderInterval();
+}
+
+function resetSliderInterval() {
+    clearInterval(sliderInterval);
+    sliderInterval = setInterval(() => moveSlide(1), 6000);
+}
+
+// Initialize bullets on startup
+document.addEventListener('DOMContentLoaded', () => {
+    initBullets();
+    resetSliderInterval();
+    document.getElementById('next-btn').onclick = () => moveSlide(1);
+    document.getElementById('prev-btn').onclick = () => moveSlide(-1);
+});
 
 // --- CART LOGIC ---
+function updateCartCount() {
+    const count = cart.length;
+    document.getElementById('cart-count').innerText = count;
+    const hCartCount = document.getElementById('h-cart-count');
+    if (hCartCount) hCartCount.innerText = count;
+}
+
 function addToCart(id) {
     const product = products.find(p => p.id === id);
     cart.push(product);
-    document.getElementById('cart-count').innerText = cart.length;
+    updateCartCount();
     alert(`${product.name} added to your selection.`);
 }
 
@@ -317,6 +418,16 @@ document.getElementById("cart-btn").onclick = (e) => {
     modal.style.display = "block";
     renderCart();
 };
+
+const hCartBtn = document.getElementById("h-cart-btn");
+if (hCartBtn) {
+    hCartBtn.onclick = (e) => {
+        e.preventDefault();
+        modal.style.display = "block";
+        renderCart();
+    };
+}
+
 function renderCart() {
     const itemsDiv = document.getElementById('cart-items');
     itemsDiv.innerHTML = cart.map(item => `<div style="padding:10px 0; border-bottom:1px solid #eee">${item.name} - $${item.price.toLocaleString()}</div>`).join('');
@@ -373,3 +484,28 @@ window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
     });
 })();
 
+// --- FILTER FUNCTIONALITY ---
+document.addEventListener('DOMContentLoaded', () => {
+    const applyFiltersBtn = document.getElementById('apply-filters');
+    const clearFiltersBtn = document.getElementById('clear-filters');
+    
+    if (applyFiltersBtn) {
+        applyFiltersBtn.onclick = () => {
+            const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked')).map(el => el.value);
+            const selectedPrice = document.querySelector('input[name="price"]:checked')?.value;
+            const selectedMaterials = Array.from(document.querySelectorAll('input[name="material"]:checked')).map(el => el.value);
+            
+            console.log('Filters applied:', { selectedCategories, selectedPrice, selectedMaterials });
+            alert(`Filters Applied:\n\nCategories: ${selectedCategories.join(', ') || 'All'}\nPrice: ${selectedPrice}\nMaterials: ${selectedMaterials.join(', ') || 'All'}`);
+        };
+    }
+    
+    if (clearFiltersBtn) {
+        clearFiltersBtn.onclick = () => {
+            document.querySelectorAll('input[name="category"]').forEach(el => el.checked = false);
+            document.querySelectorAll('input[name="material"]').forEach(el => el.checked = false);
+            document.querySelector('input[name="price"][value="all"]').checked = true;
+            console.log('Filters cleared');
+        };
+    }
+});
