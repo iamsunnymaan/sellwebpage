@@ -1,10 +1,117 @@
 // --- PRODUCT DATABASE ---
 const products = [
-    { id: 1, name: "Obsidian Void", price: 3200, img: "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800" },
-    { id: 2, name: "Alabaster Flow", price: 1500, img: "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800" },
-    { id: 3, name: "Basalt Core", price: 2800, img: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800" },
-    { id: 4, name: "Marble Silence", price: 4100, img: "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800" }
+    { id: 1, name: "Obsidian Void", price: 3200, img: "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800", category: "sculptures", collection: "stone-sculptures-art", material: "basalt" },
+    { id: 2, name: "Alabaster Flow", price: 1500, img: "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800", category: "le-luxe", collection: "stone-basin", material: "marble" },
+    { id: 3, name: "Basalt Core", price: 2800, img: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800", category: "surface", collection: "basalt", material: "basalt" },
+    { id: 4, name: "Marble Silence", price: 4100, img: "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800", category: "le-luxe", collection: "wall-murals", material: "marble" },
+    { id: 5, name: "Temple Guardian", price: 3800, img: "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800", category: "temple", collection: "temple-carvings", material: "sandstone" },
+    { id: 6, name: "Fountain Elegance", price: 4500, img: "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800", category: "sculptures", collection: "fountains", material: "marble" },
+    { id: 7, name: "Limestone Tiles", price: 1800, img: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800", category: "surface", collection: "limestone-tiles", material: "limestone" },
+    { id: 8, name: "Sandstone Classic", price: 2200, img: "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800", category: "surface", collection: "sandstone-tiles", material: "sandstone" }
 ];
+
+// --- MAGNETIC SLIDING NAVIGATION ---
+function initMagneticNav() {
+    const magneticBg = document.getElementById('nav-magnetic-bg');
+    const navItems = document.querySelectorAll('.nav-item');
+    const navLinks = document.querySelectorAll('.nav-item > .nav-link');
+    
+    if (!magneticBg || navItems.length === 0) return;
+
+    let activeItem = null;
+
+    function updateBackgroundPosition(item) {
+        if (!item) {
+            magneticBg.classList.remove('active');
+            // Remove has-bg from all items when hiding background
+            navItems.forEach(navItem => navItem.classList.remove('has-bg'));
+            return;
+        }
+
+        const link = item.querySelector('.nav-link');
+        if (!link) return;
+
+        const rect = link.getBoundingClientRect();
+        const navBoxRect = magneticBg.parentElement.getBoundingClientRect();
+
+        const left = rect.left - navBoxRect.left;
+        const top = rect.top - navBoxRect.top;
+        const width = rect.width;
+        const height = rect.height;
+
+        magneticBg.style.left = `${left}px`;
+        magneticBg.style.top = `${top}px`;
+        magneticBg.style.width = `${width}px`;
+        magneticBg.style.height = `${height}px`;
+        magneticBg.classList.add('active');
+        
+        // CRITICAL: Remove has-bg from ALL items first, then add only to current
+        navItems.forEach(navItem => navItem.classList.remove('has-bg'));
+        item.classList.add('has-bg');
+    }
+
+    // Hover effect
+    navItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 900) {
+                updateBackgroundPosition(item);
+            }
+        });
+    });
+
+    // Mouse leave - return to active or hide
+    const navBox = document.getElementById('nav-box');
+    if (navBox) {
+        navBox.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 900) {
+                if (activeItem) {
+                    updateBackgroundPosition(activeItem);
+                } else {
+                    magneticBg.classList.remove('active');
+                    navItems.forEach(navItem => navItem.classList.remove('has-bg'));
+                }
+            }
+        });
+    }
+
+    // Click to set active state
+    navLinks.forEach((link, index) => {
+        link.addEventListener('click', (e) => {
+            // Remove active from all items
+            navItems.forEach(item => item.classList.remove('active'));
+            
+            // Set current as active
+            const parentItem = navItems[index];
+            parentItem.classList.add('active');
+            activeItem = parentItem;
+            
+            if (window.innerWidth > 900) {
+                updateBackgroundPosition(activeItem);
+            }
+        });
+    });
+
+    // Set Home as default active
+    if (navItems[0]) {
+        navItems[0].classList.add('active');
+        activeItem = navItems[0];
+        setTimeout(() => {
+            if (window.innerWidth > 900) {
+                updateBackgroundPosition(activeItem);
+            }
+        }, 100);
+    }
+
+    // Update on window resize
+    window.addEventListener('resize', () => {
+        if (activeItem && window.innerWidth > 900) {
+            updateBackgroundPosition(activeItem);
+        } else if (window.innerWidth <= 900) {
+            magneticBg.classList.remove('active');
+            navItems.forEach(navItem => navItem.classList.remove('has-bg'));
+        }
+    });
+}
 
 const categoryData = {
     'mines': {
@@ -32,6 +139,12 @@ const categoryData = {
 // --- INITIALIZE PAGE ---
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
+
+    // Initialize Magnetic Sliding Navigation Background
+    initMagneticNav();
+    
+    // Initialize Horizontal Nav Magnetic Effect
+    initHorizontalMagneticNav();
 
     // Initialize mobile menu toggle
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
@@ -64,6 +177,69 @@ document.addEventListener('DOMContentLoaded', () => {
                     mobileMenuToggle.setAttribute('aria-expanded', 'false');
                 }
             });
+        });
+    }
+    
+    // Initialize filter dropdown toggles
+    const filterDropdownHeaders = document.querySelectorAll('.filter-dropdown-header');
+    filterDropdownHeaders.forEach(header => {
+        header.addEventListener('click', (e) => {
+            // Don't toggle if clicking on checkbox
+            if (e.target.type === 'checkbox') return;
+            
+            const dropdownId = header.getAttribute('data-toggle');
+            const dropdownContent = document.getElementById(dropdownId);
+            
+            // Toggle current dropdown
+            header.classList.toggle('open');
+            dropdownContent.classList.toggle('open');
+        });
+    });
+    
+    // Parent checkbox logic - check/uncheck all children
+    const parentCheckboxes = document.querySelectorAll('.parent-checkbox');
+    parentCheckboxes.forEach(parentCheckbox => {
+        parentCheckbox.addEventListener('change', function() {
+            const categoryValue = this.value;
+            const childCheckboxes = document.querySelectorAll(`input[data-parent="${categoryValue}"]`);
+            
+            childCheckboxes.forEach(child => {
+                child.checked = this.checked;
+            });
+        });
+    });
+    
+    // Child checkbox logic - update parent if all children are checked/unchecked
+    const collectionCheckboxes = document.querySelectorAll('input[name="collection"]');
+    collectionCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const parentValue = this.getAttribute('data-parent');
+            const parentCheckbox = document.querySelector(`.parent-checkbox[value="${parentValue}"]`);
+            const siblings = document.querySelectorAll(`input[data-parent="${parentValue}"]`);
+            
+            const allChecked = Array.from(siblings).every(cb => cb.checked);
+            const anyChecked = Array.from(siblings).some(cb => cb.checked);
+            
+            if (parentCheckbox) {
+                parentCheckbox.checked = allChecked;
+                parentCheckbox.indeterminate = anyChecked && !allChecked;
+            }
+        });
+    });
+    
+    // Apply Filters functionality
+    const applyFiltersBtn = document.getElementById('apply-filters');
+    const clearFiltersBtn = document.getElementById('clear-filters');
+    
+    if (applyFiltersBtn) {
+        applyFiltersBtn.addEventListener('click', () => {
+            applyFilters();
+        });
+    }
+    
+    if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', () => {
+            clearAllFilters();
         });
     }
 
@@ -137,6 +313,109 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// --- HORIZONTAL NAV MAGNETIC SLIDING EFFECT ---
+function initHorizontalMagneticNav() {
+    const hMagneticBg = document.getElementById('h-nav-magnetic-bg');
+    const hNavItems = document.querySelectorAll('.h-nav-item');
+    const hNavBtns = document.querySelectorAll('.h-nav-btn');
+    
+    if (!hMagneticBg || hNavItems.length === 0) return;
+
+    let activeHItem = null;
+
+    function updateHorizontalBgPosition(item) {
+        if (!item) {
+            hMagneticBg.classList.remove('active');
+            // Remove has-bg from all items when hiding background
+            hNavItems.forEach(navItem => navItem.classList.remove('has-bg'));
+            return;
+        }
+
+        const btn = item.querySelector('.h-nav-btn');
+        if (!btn) return;
+
+        const rect = btn.getBoundingClientRect();
+        const navRect = hMagneticBg.parentElement.getBoundingClientRect();
+
+        const left = rect.left - navRect.left;
+        const top = rect.top - navRect.top;
+        const width = rect.width;
+        const height = rect.height;
+
+        hMagneticBg.style.left = `${left}px`;
+        hMagneticBg.style.top = `${top}px`;
+        hMagneticBg.style.width = `${width}px`;
+        hMagneticBg.style.height = `${height}px`;
+        hMagneticBg.classList.add('active');
+        
+        // CRITICAL: Remove has-bg from ALL items first, then add only to current
+        hNavItems.forEach(navItem => navItem.classList.remove('has-bg'));
+        item.classList.add('has-bg');
+    }
+
+    // Hover effect
+    hNavItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 900) {
+                updateHorizontalBgPosition(item);
+            }
+        });
+    });
+
+    // Mouse leave - return to active or hide
+    const horizontalNav = document.querySelector('.horizontal-nav');
+    if (horizontalNav) {
+        horizontalNav.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 900) {
+                if (activeHItem) {
+                    updateHorizontalBgPosition(activeHItem);
+                } else {
+                    hMagneticBg.classList.remove('active');
+                    hNavItems.forEach(navItem => navItem.classList.remove('has-bg'));
+                }
+            }
+        });
+    }
+
+    // Click to set active state
+    hNavBtns.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            // Remove active from all items
+            hNavItems.forEach(item => item.classList.remove('active'));
+            
+            // Set current as active
+            const parentItem = hNavItems[index];
+            parentItem.classList.add('active');
+            activeHItem = parentItem;
+            
+            if (window.innerWidth > 900) {
+                updateHorizontalBgPosition(activeHItem);
+            }
+        });
+    });
+
+    // All Collection button removes active state
+    const allCollectionBtn = document.getElementById('all-collection-btn');
+    if (allCollectionBtn) {
+        allCollectionBtn.addEventListener('click', () => {
+            hNavItems.forEach(item => item.classList.remove('active'));
+            activeHItem = null;
+            hMagneticBg.classList.remove('active');
+            hNavItems.forEach(navItem => navItem.classList.remove('has-bg'));
+        });
+    }
+
+    // Update on window resize
+    window.addEventListener('resize', () => {
+        if (activeHItem && window.innerWidth > 900) {
+            updateHorizontalBgPosition(activeHItem);
+        } else if (window.innerWidth <= 900) {
+            hMagneticBg.classList.remove('active');
+            hNavItems.forEach(navItem => navItem.classList.remove('has-bg'));
+        }
+    });
+}
 
 // --- Horizontal nav product categories (used by the center long bar) ---
 
@@ -333,9 +612,18 @@ function renderCategoryGallery(catId, selectedItem) {
 
 
 // --- RENDER SHOP ---
-function renderProducts() {
+function renderProducts(filteredProducts = null) {
     const container = document.getElementById('product-container');
-    products.forEach(p => {
+    container.innerHTML = ''; // Clear existing products
+    
+    const productsToRender = filteredProducts || products;
+    
+    if (productsToRender.length === 0) {
+        container.innerHTML = '<p style="text-align: center; padding: 40px; color: #666; grid-column: 1/-1;">No products found matching your filters.</p>';
+        return;
+    }
+    
+    productsToRender.forEach(p => {
         container.innerHTML += `
             <div class="card">
                 <img src="${p.img}" alt="${p.name}">
