@@ -263,7 +263,14 @@ const categoryData = {
 
 // --- INITIALIZE PAGE ---
 document.addEventListener('DOMContentLoaded', () => {
+    // Render all products on initial load
     renderProducts();
+    
+    // Set initial breadcrumb to show "All Collection"
+    const categoryNameEl = document.getElementById('category-name');
+    const arrowSep = document.getElementById('arrow-separator');
+    if (categoryNameEl) categoryNameEl.textContent = '';
+    if (arrowSep) arrowSep.style.display = 'none';
 
     // Initialize Magnetic Sliding Navigation Background
     initMagneticNav();
