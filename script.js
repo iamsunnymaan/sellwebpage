@@ -137,6 +137,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadProducts();
     renderProducts();
     initInfiniteCarousel();
+    initGalleryFilters();
     
     const categoryNameEl = document.getElementById('category-name');
     const arrowSep = document.getElementById('arrow-separator');
@@ -600,6 +601,179 @@ function renderProducts(filteredProducts = null) {
                 </div>
             </div>`;
     });
+}
+
+// --- FILTER FUNCTIONALITY ---
+function initGalleryFilters() {
+    const filterSidebar = document.getElementById('gallery-filter-sidebar');
+    const resetBtn = document.getElementById('filter-reset-btn');
+    const toggleBtn = document.getElementById('filter-toggle-btn');
+    const checkboxes = filterSidebar.querySelectorAll('input[type="checkbox"]');
+    
+    // Handle category toggle buttons
+    const categoryToggles = filterSidebar.querySelectorAll('.category-toggle');
+    categoryToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            const categoryGroup = toggle.closest('.filter-category-group');
+            categoryGroup.classList.toggle('expanded');
+        });
+    });
+    
+    // Handle category checkbox - auto check/uncheck subcategories
+    const categoryCheckboxes = filterSidebar.querySelectorAll('.category-checkbox');
+    categoryCheckboxes.forEach(catCheckbox => {
+        catCheckbox.addEventListener('change', (e) => {
+            const categoryGroup = catCheckbox.closest('.filter-category-group');
+            const subcategoryCheckboxes = categoryGroup.querySelectorAll('.subcategory input[type="checkbox"]');
+            
+            // If category is checked, expand the group and check all subcategories
+            if (catCheckbox.checked) {
+                categoryGroup.classList.add('expanded');
+                subcategoryCheckboxes.forEach(subCb => {
+                    subCb.checked = true;
+                });
+            } else {
+                // If category is unchecked, uncheck all subcategories
+                subcategoryCheckboxes.forEach(subCb => {
+                    subCb.checked = false;
+                });
+            }
+            
+            applyFilters();
+        });
+    });
+    
+    // Handle subcategory checkbox - auto check parent category
+    const subcategoryCheckboxes = filterSidebar.querySelectorAll('.subcategory input[type="checkbox"]');
+    subcategoryCheckboxes.forEach(subCheckbox => {
+        subCheckbox.addEventListener('change', () => {
+            const categoryGroup = subCheckbox.closest('.filter-category-group');
+            const categoryCheckbox = categoryGroup.querySelector('.category-checkbox');
+            const anySubcategoryChecked = Array.from(categoryGroup.querySelectorAll('.subcategory input[type="checkbox"]')).some(cb => cb.checked);
+            
+            // Auto-check parent category if any subcategory is checked
+            if (anySubcategoryChecked && !categoryCheckbox.checked) {
+                categoryCheckbox.checked = true;
+            }
+            
+            applyFilters();
+        });
+    });
+    
+    // Apply filters
+    const applyFilters = () => {
+        const selectedCategories = Array.from(filterSidebar.querySelectorAll('input[name="category"]:checked')).map(cb => cb.value);
+        const selectedSubcategories = Array.from(filterSidebar.querySelectorAll('input[name="subcategory"]:checked')).map(cb => cb.value);
+        const selectedPrices = Array.from(filterSidebar.querySelectorAll('input[name="price"]:checked')).map(cb => cb.value);
+        const selectedMaterials = Array.from(filterSidebar.querySelectorAll('input[name="material"]:checked')).map(cb => cb.value);
+        
+        let filtered = products;
+        
+        // Filter by category and subcategory
+        if (selectedCategories.length > 0 || selectedSubcategories.length > 0) {
+            filtered = filtered.filter(p => {
+                // Map subcategory filter values to product collection values
+                const subcategoryMap = {
+                    'le-luxe-pergola': 'gajebo-pergola',
+                    'le-luxe-basin': 'stone-basin',
+                    'le-luxe-murals': 'wall-murals',
+                    'le-luxe-hardscape': 'hardscape',
+                    'le-luxe-inlay': 'inlay',
+                    'surface-sandstone': 'sandstone-tiles',
+                    'surface-limestone': 'limestone-tiles',
+                    'surface-salestone': 'salestone-tiles',
+                    'surface-basalt': 'basalt',
+                    'surface-porcelain': 'porcelain-tiles',
+                    'temple-carvings': 'temple-carvings',
+                    'temple-pillars': 'pillars-torans',
+                    'sculptures-stone': 'stone-sculptures',
+                    'sculptures-fountains': 'fountains'
+                };
+                
+                // Check if product matches selected categories
+                const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(p.category);
+                
+                // Check if product matches selected subcategories
+                let matchesSubcategory = selectedSubcategories.length === 0;
+                if (selectedSubcategories.length > 0 && p.collection) {
+                    matchesSubcategory = selectedSubcategories.some(sub => {
+                        const mappedCollection = subcategoryMap[sub];
+                        return p.collection === mappedCollection;
+                    });
+                }
+                
+                // If both filters are active, product must match both
+                // If only one is active, product must match that one
+                if (selectedCategories.length > 0 && selectedSubcategories.length > 0) {
+                    return matchesCategory && matchesSubcategory;
+                } else if (selectedCategories.length > 0) {
+                    return matchesCategory;
+                } else if (selectedSubcategories.length > 0) {
+                    return matchesSubcategory;
+                }
+                
+                return true;
+            });
+        }
+        
+        // Filter by price range
+        if (selectedPrices.length > 0) {
+            filtered = filtered.filter(p => {
+                return selectedPrices.some(range => {
+                    if (range === '0-5000') return p.price < 5000;
+                    if (range === '5000-15000') return p.price >= 5000 && p.price < 15000;
+                    if (range === '15000-30000') return p.price >= 15000 && p.price < 30000;
+                    if (range === '30000-plus') return p.price >= 30000;
+                    return false;
+                });
+            });
+        }
+        
+        // Filter by material
+        if (selectedMaterials.length > 0) {
+            filtered = filtered.filter(p => {
+                const productMaterial = p.material ? p.material.toLowerCase() : '';
+                return selectedMaterials.some(mat => productMaterial.includes(mat));
+            });
+        }
+        
+        renderProducts(filtered);
+    };
+    
+    // Add change listeners to price and material checkboxes
+    const otherCheckboxes = filterSidebar.querySelectorAll('input[name="price"], input[name="material"]');
+    otherCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', applyFilters);
+    });
+    
+    // Reset filters
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            checkboxes.forEach(cb => cb.checked = false);
+            
+            // Collapse all category groups
+            const categoryGroups = filterSidebar.querySelectorAll('.filter-category-group');
+            categoryGroups.forEach(group => group.classList.remove('expanded'));
+            
+            renderProducts();
+            
+            // Reset breadcrumb
+            const categoryNameEl = document.getElementById('category-name');
+            const arrowSep = document.getElementById('arrow-separator');
+            const galleryBackBtn = document.getElementById('gallery-back-btn');
+            if (arrowSep) arrowSep.style.display = 'none';
+            if (categoryNameEl) categoryNameEl.textContent = '';
+            if (galleryBackBtn) galleryBackBtn.style.display = 'none';
+        });
+    }
+    
+    // Toggle filter sidebar on mobile
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            filterSidebar.classList.toggle('active');
+        });
+    }
 }
 
 // --- PRODUCT INTERACTIONS ---

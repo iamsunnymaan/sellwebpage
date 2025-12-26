@@ -182,6 +182,188 @@
 </section>
 
 <section class="unified-gallery-wrapper">
+    <!-- Filter Sidebar -->
+    <div class="gallery-filter-sidebar" id="gallery-filter-sidebar">
+        <div class="filter-header">
+            <h3>Filters</h3>
+            <button class="filter-reset-btn" id="filter-reset-btn">Clear All</button>
+        </div>
+        
+        <div class="filter-section">
+            <h4>Categories</h4>
+            <div class="filter-options">
+                <div class="filter-category-group">
+                    <label class="filter-category-header">
+                        <input type="checkbox" name="category" value="le-luxe" class="category-checkbox">
+                        <span class="category-name">Le Luxe</span>
+                        <button class="category-toggle" type="button" aria-label="Toggle subcategories">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                    </label>
+                    <div class="filter-subcategories">
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="le-luxe-pergola">
+                            <span>Gajebo / Pergola</span>
+                        </label>
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="le-luxe-basin">
+                            <span>Stone Basin</span>
+                        </label>
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="le-luxe-murals">
+                            <span>Wall Murals</span>
+                        </label>
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="le-luxe-hardscape">
+                            <span>Hardscape</span>
+                        </label>
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="le-luxe-inlay">
+                            <span>Inlay</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="filter-category-group">
+                    <label class="filter-category-header">
+                        <input type="checkbox" name="category" value="surface" class="category-checkbox">
+                        <span class="category-name">Surface</span>
+                        <button class="category-toggle" type="button" aria-label="Toggle subcategories">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                    </label>
+                    <div class="filter-subcategories">
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="surface-sandstone">
+                            <span>Sandstone Tiles</span>
+                        </label>
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="surface-limestone">
+                            <span>Limestone Tiles</span>
+                        </label>
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="surface-salestone">
+                            <span>Salestone Tiles</span>
+                        </label>
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="surface-basalt">
+                            <span>Basalt</span>
+                        </label>
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="surface-porcelain">
+                            <span>Porcelain Tiles</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="filter-category-group">
+                    <label class="filter-category-header">
+                        <input type="checkbox" name="category" value="temple" class="category-checkbox">
+                        <span class="category-name">Temple</span>
+                        <button class="category-toggle" type="button" aria-label="Toggle subcategories">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                    </label>
+                    <div class="filter-subcategories">
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="temple-carvings">
+                            <span>Temple Carvings</span>
+                        </label>
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="temple-pillars">
+                            <span>Pillars & Torans</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="filter-category-group">
+                    <label class="filter-category-header">
+                        <input type="checkbox" name="category" value="sculptures" class="category-checkbox">
+                        <span class="category-name">Sculptures</span>
+                        <button class="category-toggle" type="button" aria-label="Toggle subcategories">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                    </label>
+                    <div class="filter-subcategories">
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="sculptures-stone">
+                            <span>Stone Sculptures</span>
+                        </label>
+                        <label class="filter-checkbox subcategory">
+                            <input type="checkbox" name="subcategory" value="sculptures-fountains">
+                            <span>Fountains</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <h4>Price Range</h4>
+            <div class="filter-options">
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="price" value="0-5000">
+                    <span>Under $5,000</span>
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="price" value="5000-15000">
+                    <span>$5,000 - $15,000</span>
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="price" value="15000-30000">
+                    <span>$15,000 - $30,000</span>
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="price" value="30000-plus">
+                    <span>$30,000+</span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <h4>Material</h4>
+            <div class="filter-options">
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="material" value="marble">
+                    <span>Marble</span>
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="material" value="sandstone">
+                    <span>Sandstone</span>
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="material" value="limestone">
+                    <span>Limestone</span>
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="material" value="granite">
+                    <span>Granite</span>
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="material" value="basalt">
+                    <span>Basalt</span>
+                </label>
+            </div>
+        </div>
+        
+        <button class="filter-toggle-btn" id="filter-toggle-btn" aria-label="Toggle filters">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M3 4h18M3 12h18M3 20h18"/>
+                <circle cx="7" cy="4" r="2" fill="currentColor"/>
+                <circle cx="17" cy="12" r="2" fill="currentColor"/>
+                <circle cx="12" cy="20" r="2" fill="currentColor"/>
+            </svg>
+        </button>
+    </div>
+    
     <div class="gallery-main-box">
         <div class="gallery-header" id="gallery-header">
             <button class="gallery-back-btn" id="gallery-back-btn" style="display: none;">
