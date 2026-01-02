@@ -1,14 +1,20 @@
 // --- PRODUCT DATABASE ---
+// Products are now loaded directly from products.js - no server required!
 let products = [];
 
-// Load products from JSON file
-async function loadProducts() {
+// Initialize products from the global productsData
+function loadProducts() {
     try {
-        const response = await fetch('products.json');
-        const data = await response.json();
-        products = data.products;
-        return products;
+        if (typeof productsData !== 'undefined' && productsData.products) {
+            products = productsData.products;
+            console.log('Products loaded successfully:', products.length);
+            return products;
+        } else {
+            console.error('productsData not found. Make sure products.js is loaded before script.js');
+            return [];
+        }
     } catch (error) {
+        console.error('Error loading products:', error);
         return [];
     }
 }
@@ -113,28 +119,28 @@ const categoryData = {
     'mines': {
         title: "Our Private Mines",
         desc: "We source our raw stone directly from premium quarries, ensuring the highest grade of natural marble and sandstone from the very start.",
-        img: "img/grungy-gray-marble-textured-background.jpg"
+        img: "img/pastel-purple-marble-background-with-gold-lining.jpg"
     },
     'manufacturing-units': {
         title: "State-of-the-Art Facilities",
         desc: "Our manufacturing units utilize precision Italian machinery to cut and polish stone to international luxury standards.",
-        img: "img/2046556.jpg"
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200"
     },
     'quality-control': {
         title: "Rigorous Inspection",
         desc: "Every slab undergoes a 12-point quality check to ensure color consistency, structural integrity, and a flawless finish.",
-        img: "img/pastel-purple-marble-background-with-gold-lining.jpg"
+        img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200"
     },
     'packaging-unit': {
         title: "Secure Global Shipping",
         desc: "Custom wooden crating and reinforced padding ensure that every masterpiece arrives at your doorstep in perfect condition.",
-        img: "img/2046556.jpg"
+        img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200"
     }
 };
 
 // --- INITIALIZE PAGE ---
-document.addEventListener('DOMContentLoaded', async () => {
-    await loadProducts();
+document.addEventListener('DOMContentLoaded', () => {
+    loadProducts();
     renderProducts();
     initInfiniteCarousel();
     initGalleryFilters();
@@ -597,10 +603,15 @@ function renderProducts(filteredProducts = null) {
                 <p style="color: #888; margin: 10px 0">$${p.price.toLocaleString()}</p>
                 <div style="display:flex; gap:10px; margin-top:12px">
                     <button class="connect-btn" style="flex:1" onclick="enquireProduct('${encodeURIComponent(p.name)}')">Enquire</button>
-                    <button class="connect-btn" style="flex:1" onclick="viewProduct('${encodeURIComponent(p.name)}', ${p.price})">View Product</button>
+                    <button class="connect-btn" style="flex:1" onclick="viewProductDetails(${p.id})">View Product</button>
                 </div>
             </div>`;
     });
+}
+
+// Navigate to product details page
+function viewProductDetails(productId) {
+    window.location.href = `product-details.html?id=${productId}`;
 }
 
 // --- FILTER FUNCTIONALITY ---
@@ -790,7 +801,21 @@ function viewProduct(encodedName, price) {
 // --- INFINITE SCROLL CAROUSEL ---
 function initInfiniteCarousel() {
     const carouselTrack = document.getElementById('carousel-track');
-    if (!carouselTrack || products.length === 0) return;
+    if (!carouselTrack) {
+        console.error('Carousel track element not found');
+        return;
+    }
+    
+    if (products.length === 0) {
+        console.warn('No products loaded for carousel.');
+        carouselTrack.innerHTML = `
+            <div style="width: 100%; padding: 40px; text-align: center; color: #666;">
+                <p style="font-size: 1.1rem; margin-bottom: 10px;">Products could not be loaded</p>
+                <p style="font-size: 0.9rem;">Please ensure products.js is loaded correctly</p>
+            </div>
+        `;
+        return;
+    }
 
     const featuredProducts = products.slice(0, 12);
     

@@ -1,10 +1,11 @@
-{
+// Products Data - No server required!
+const productsData = {
   "products": [
     {
       "id": 1,
       "name": "Celestial Dome Marble Pergola",
       "price": 12500,
-      "img": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800",
+      "img": "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800",
       "category": "le-luxe",
       "collection": "gajebo-pergola",
       "material": "marble"
@@ -13,7 +14,7 @@
       "id": 2,
       "name": "Eternal Legacy Pavilion",
       "price": 15000,
-      "img": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800",
+      "img": "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800",
       "category": "le-luxe",
       "collection": "gajebo-pergola",
       "material": "marble"
@@ -22,7 +23,7 @@
       "id": 3,
       "name": "Heritage Stone Gazebo",
       "price": 11000,
-      "img": "https://images.unsplash.com/photo-1615874694520-474822394e73?w=800",
+      "img": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
       "category": "le-luxe",
       "collection": "gajebo-pergola",
       "material": "sandstone"
@@ -31,7 +32,7 @@
       "id": 4,
       "name": "Imperial Carrara Marble Pergola",
       "price": 18000,
-      "img": "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800",
+      "img": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800",
       "category": "le-luxe",
       "collection": "gajebo-pergola",
       "material": "marble"
@@ -40,7 +41,7 @@
       "id": 5,
       "name": "Regalia Corinthian Pergola",
       "price": 16500,
-      "img": "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=800",
+      "img": "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800",
       "category": "le-luxe",
       "collection": "gajebo-pergola",
       "material": "marble"
@@ -49,7 +50,7 @@
       "id": 6,
       "name": "Serene Marble Court",
       "price": 14000,
-      "img": "https://images.unsplash.com/photo-1607185223381-18b3b827d710?w=800",
+      "img": "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800",
       "category": "le-luxe",
       "collection": "gajebo-pergola",
       "material": "marble"
@@ -58,7 +59,7 @@
       "id": 7,
       "name": "The Desert Royale Pergola",
       "price": 13500,
-      "img": "https://images.unsplash.com/photo-1597655601841-214a4cfe8b2c?w=800",
+      "img": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
       "category": "le-luxe",
       "collection": "gajebo-pergola",
       "material": "sandstone"
@@ -67,7 +68,7 @@
       "id": 8,
       "name": "The Eternal Aureum Pergola",
       "price": 17500,
-      "img": "https://images.unsplash.com/photo-1604357209793-fca5dca89f97?w=800",
+      "img": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800",
       "category": "le-luxe",
       "collection": "gajebo-pergola",
       "material": "marble"
@@ -76,7 +77,7 @@
       "id": 9,
       "name": "The Lattice Pavilion",
       "price": 12000,
-      "img": "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800",
+      "img": "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800",
       "category": "le-luxe",
       "collection": "gajebo-pergola",
       "material": "marble"
@@ -85,7 +86,7 @@
       "id": 10,
       "name": "The Regal Harmony Pavilion",
       "price": 16000,
-      "img": "https://images.unsplash.com/photo-1591561954555-607968c989ab?w=800",
+      "img": "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800",
       "category": "le-luxe",
       "collection": "gajebo-pergola",
       "material": "marble"
@@ -94,7 +95,7 @@
       "id": 11,
       "name": "Aqua Pebble Basin",
       "price": 1800,
-      "img": "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800",
+      "img": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -103,7 +104,7 @@
       "id": 12,
       "name": "Arcus Marble Basin",
       "price": 2200,
-      "img": "https://images.unsplash.com/photo-1604709177225-055f99402ea3?w=800",
+      "img": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -112,7 +113,7 @@
       "id": 13,
       "name": "Aurelia Marble Basin",
       "price": 2400,
-      "img": "https://images.unsplash.com/photo-1585128903994-03b430c83872?w=800",
+      "img": "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -121,7 +122,7 @@
       "id": 14,
       "name": "Calacatta Marble Basin",
       "price": 2800,
-      "img": "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800",
+      "img": "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -130,7 +131,7 @@
       "id": 15,
       "name": "Carrara Marble Basin",
       "price": 2600,
-      "img": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800",
+      "img": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -139,7 +140,7 @@
       "id": 16,
       "name": "Daino Reale Marble Basin",
       "price": 2500,
-      "img": "https://images.unsplash.com/photo-1604709177331-e71cbcf3e8fb?w=800",
+      "img": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -148,7 +149,7 @@
       "id": 17,
       "name": "Emperador Dark Marble Basin",
       "price": 2700,
-      "img": "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800",
+      "img": "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -157,7 +158,7 @@
       "id": 18,
       "name": "Eterna Rock Basin",
       "price": 2100,
-      "img": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",
+      "img": "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "basalt"
@@ -166,7 +167,7 @@
       "id": 19,
       "name": "Fluted Harmony Basin",
       "price": 2300,
-      "img": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800",
+      "img": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -175,7 +176,7 @@
       "id": 20,
       "name": "Makrana White Marble Basin",
       "price": 3000,
-      "img": "https://images.unsplash.com/photo-1604709177225-055f99402ea3?w=800",
+      "img": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -184,7 +185,7 @@
       "id": 21,
       "name": "Midnight Black Stone Basin",
       "price": 2400,
-      "img": "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800",
+      "img": "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "basalt"
@@ -193,7 +194,7 @@
       "id": 22,
       "name": "Natural Black Marble Basin",
       "price": 2500,
-      "img": "https://images.unsplash.com/photo-1595514535116-9e0f5c0e8e4e?w=800",
+      "img": "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -202,7 +203,7 @@
       "id": 23,
       "name": "Nero Flute Basin",
       "price": 2600,
-      "img": "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800",
+      "img": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -211,7 +212,7 @@
       "id": 24,
       "name": "Nero Marquina Marble Basin",
       "price": 2700,
-      "img": "https://images.unsplash.com/photo-1604709177331-e71cbcf3e8fb?w=800",
+      "img": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -220,7 +221,7 @@
       "id": 25,
       "name": "Noir Haven Basin",
       "price": 2500,
-      "img": "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800",
+      "img": "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -229,7 +230,7 @@
       "id": 26,
       "name": "Pietra Grey Marble Basin",
       "price": 2400,
-      "img": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800",
+      "img": "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -238,7 +239,7 @@
       "id": 27,
       "name": "Regal Arc Basin",
       "price": 2800,
-      "img": "https://images.unsplash.com/photo-1585128903994-03b430c83872?w=800",
+      "img": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "marble"
@@ -247,7 +248,7 @@
       "id": 28,
       "name": "Volcanic Stone Basin",
       "price": 2200,
-      "img": "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800",
+      "img": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800",
       "category": "le-luxe",
       "collection": "stone-basin",
       "material": "basalt"
@@ -256,7 +257,7 @@
       "id": 29,
       "name": "Abstract Harmony Mural",
       "price": 4500,
-      "img": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800",
+      "img": "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800",
       "category": "le-luxe",
       "collection": "wall-murals",
       "material": "marble"
@@ -265,7 +266,7 @@
       "id": 30,
       "name": "Botanical Dreams Mural",
       "price": 5000,
-      "img": "https://images.unsplash.com/photo-1582719366794-1d3b95490f2e?w=800",
+      "img": "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800",
       "category": "le-luxe",
       "collection": "wall-murals",
       "material": "marble"
@@ -274,7 +275,7 @@
       "id": 31,
       "name": "Heritage Pattern Mural",
       "price": 4800,
-      "img": "https://images.unsplash.com/photo-1576171276106-3e36b7f01150?w=800",
+      "img": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
       "category": "le-luxe",
       "collection": "wall-murals",
       "material": "sandstone"
@@ -283,7 +284,7 @@
       "id": 32,
       "name": "Antique Sand Travertine Countertop",
       "price": 3200,
-      "img": "https://images.unsplash.com/photo-1595814433015-e3fbd5cdea97?w=800",
+      "img": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800",
       "category": "le-luxe",
       "collection": "counter-top",
       "material": "marble"
@@ -292,7 +293,7 @@
       "id": 33,
       "name": "Arctic White Marble Inlay Table",
       "price": 3800,
-      "img": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800",
+      "img": "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800",
       "category": "le-luxe",
       "collection": "counter-top",
       "material": "marble"
@@ -301,7 +302,7 @@
       "id": 34,
       "name": "Aria Marble Accent Table",
       "price": 3500,
-      "img": "https://images.unsplash.com/photo-1565191999001-551c187427bb?w=800",
+      "img": "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800",
       "category": "le-luxe",
       "collection": "counter-top",
       "material": "marble"
@@ -310,7 +311,7 @@
       "id": 35,
       "name": "Aura Black Table",
       "price": 3600,
-      "img": "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=800",
+      "img": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
       "category": "le-luxe",
       "collection": "counter-top",
       "material": "marble"
@@ -319,7 +320,7 @@
       "id": 36,
       "name": "Aurelia Stone Coffee Table",
       "price": 4000,
-      "img": "https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=800",
+      "img": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800",
       "category": "le-luxe",
       "collection": "counter-top",
       "material": "marble"
@@ -328,7 +329,7 @@
       "id": 37,
       "name": "Éclat Face Art Table",
       "price": 4500,
-      "img": "https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=800",
+      "img": "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800",
       "category": "le-luxe",
       "collection": "counter-top",
       "material": "marble"
@@ -337,7 +338,7 @@
       "id": 38,
       "name": "Emerald Loop Side Table",
       "price": 3400,
-      "img": "https://images.unsplash.com/photo-1595814800084-a3dbe6c49f36?w=800",
+      "img": "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800",
       "category": "le-luxe",
       "collection": "counter-top",
       "material": "marble"
@@ -346,7 +347,7 @@
       "id": 39,
       "name": "Marbella Orb Table Collection",
       "price": 3900,
-      "img": "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=800",
+      "img": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
       "category": "le-luxe",
       "collection": "counter-top",
       "material": "marble"
@@ -355,7 +356,7 @@
       "id": 40,
       "name": "Obsidian Arc Console Table",
       "price": 4200,
-      "img": "https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?w=800",
+      "img": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800",
       "category": "le-luxe",
       "collection": "counter-top",
       "material": "marble"
@@ -364,7 +365,7 @@
       "id": 41,
       "name": "The Onyx Horizon Center Table",
       "price": 4600,
-      "img": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800",
+      "img": "https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800",
       "category": "le-luxe",
       "collection": "counter-top",
       "material": "marble"
@@ -373,7 +374,7 @@
       "id": 42,
       "name": "The Sculpted Wave Table",
       "price": 4300,
-      "img": "https://images.unsplash.com/photo-1595814800084-a3dbe6c49f36?w=800",
+      "img": "https://images.unsplash.com/photo-1518998053574-53ee75db7441?w=800",
       "category": "le-luxe",
       "collection": "counter-top",
       "material": "marble"
@@ -382,7 +383,7 @@
       "id": 43,
       "name": "Verdant Sculpture Console",
       "price": 4100,
-      "img": "https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=800",
+      "img": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
       "category": "le-luxe",
       "collection": "counter-top",
       "material": "marble"
@@ -937,4 +938,4 @@
       "material": "marble"
     }
   ]
-}
+};
