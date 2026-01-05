@@ -135,6 +135,15 @@ body {
     color: #111;
     padding: 5px;
     z-index: 10001;
+    position: relative;
+    min-width: 44px;
+    min-height: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-menu-toggle:active {
+    transform: scale(0.95);
 }
 
 .mobile-menu-toggle:hover {
@@ -3582,6 +3591,10 @@ img, video, iframe {
         display: block;
         padding: 15px 0;
         font-size: 1rem;
+        position: relative;
+        min-height: 44px; /* Minimum touch target size */
+        display: flex;
+        align-items: center;
     }
 
     .dropdown-content,
@@ -3608,6 +3621,24 @@ img, video, iframe {
     .nested-dropdown.open > .nested-content {
         max-height: 500px;
         padding: 10px 10px 10px 20px;
+    }
+
+    /* Add arrow indicators for mobile dropdowns */
+    .dropdown > a::after,
+    .sub-dropdown > a::after,
+    .nested-dropdown > a::after {
+        content: '›';
+        display: inline-block;
+        margin-left: 8px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown.open > a::after,
+    .sub-dropdown.open > a::after,
+    .nested-dropdown.open > a::after {
+        transform: rotate(90deg);
     }
 
     .header-right {

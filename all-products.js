@@ -81,21 +81,18 @@ document.addEventListener('DOMContentLoaded', () => {
             filterProducts(filter);
         });
     });
+    
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const navBox = document.getElementById('nav-box');
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', () => {
+            navBox.classList.toggle('active');
+            mobileMenuToggle.textContent = navBox.classList.contains('active') ? '✕' : '☰';
+        });
+    }
 });
-
-// Mobile menu toggle
-const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-const navBox = document.getElementById('nav-box');
-
-if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener('click', () => {
-        navBox.classList.toggle('active');
-        mobileMenuToggle.textContent = navBox.classList.contains('active') ? '✕' : '☰';
-    });
-}
-
-// Load products on page load
-document.addEventListener('DOMContentLoaded', loadAllProducts);
 
 // Contact Modal Functions
 function openContactModal() {
