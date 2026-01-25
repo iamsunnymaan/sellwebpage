@@ -102,6 +102,7 @@
         </div>
     </section>
 
+    <!-- Company Introduction -->
     <section class="collection-bio">
         <h2>Explore Our Luxury Stone Collection</h2>
         <p>
@@ -109,33 +110,558 @@
         </p>
     </section>
 
-    <section class="infinite-scroll-section">
-        <h2>Featured Products</h2>
-        <div class="carousel-container">
-            <button class="carousel-nav-btn left-btn" id="scroll-left-btn" aria-label="Scroll left">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M15 18l-6-6 6-6"/>
-                </svg>
-            </button>
-            
-            <div class="carousel-wrapper" id="carousel-wrapper">
-                <div class="carousel-track" id="carousel-track">
-                    <!-- Products will be dynamically inserted here -->
+    <!-- Marble Collections Section (Main Product Showcase) -->
+    <section class="marble-collections-section">
+        <h2 class="section-title">Marble Collections</h2>
+        
+        <div class="collection-tabs">
+            <button class="tab-btn active" data-tab="popular">Popular Marble</button>
+            <button class="tab-btn" data-tab="colors">Marble by Colours</button>
+            <button class="tab-btn" data-tab="spaces">Marble by Spaces</button>
+        </div>
+
+        <!-- Popular Marble Tab -->
+        <div class="tab-content active" id="popular">
+            <div class="tab-description">
+                <p>Indulge in the glory of class-apart imported marble. Our popular offerings range from a variety of premium marble types. These pieces are versatile and luxurious, the key qualities you would find in all our marble.</p>
+            </div>
+            <div class="collection-grid">
+                <div class="collection-card">
+                    <img src="img/onyx-marble.jpg" alt="Onyx Marble" onerror="this.src='https://images.unsplash.com/photo-1615529182904-14819c35db37?w=400'">
+                    <div class="card-overlay">
+                        <h3>Onyx Marble</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="img/statuario-marble.jpg" alt="Statuario Marble" onerror="this.src='https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400'">
+                    <div class="card-overlay">
+                        <h3>Statuario Marble</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="img/travertine-marble.jpg" alt="Travertine Marble" onerror="this.src='https://images.unsplash.com/photo-1615875466685-937ea48b5c8e?w=400'">
+                    <div class="card-overlay">
+                        <h3>Travertine Marble</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="img/white-marble.jpg" alt="White Marble" onerror="this.src='https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=400'">
+                    <div class="card-overlay">
+                        <h3>White Marble</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
                 </div>
             </div>
-            
-            <button class="carousel-nav-btn right-btn" id="scroll-right-btn" aria-label="Scroll right">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M9 18l6-6-6-6"/>
-                </svg>
-            </button>
         </div>
-        <div class="view-all-container">
-            <a href="all-products.html" class="view-all-btn">View All Products</a>
+
+        <!-- Marble by Colours Tab -->
+        <div class="tab-content" id="colors">
+            <div class="tab-description">
+                <p>Discover our exquisite range of marble categorized by their stunning natural colors. From pristine whites to elegant greys, each shade tells its own unique story.</p>
+            </div>
+            <div class="collection-grid">
+                <div class="collection-card">
+                    <img src="img/white-marble-col.jpg" alt="White Marble" onerror="this.src='https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=400'">
+                    <div class="card-overlay">
+                        <h3>White Marble</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="img/grey-marble.jpg" alt="Grey Marble" onerror="this.src='https://images.unsplash.com/photo-1615529328331-f8917597711f?w=400'">
+                    <div class="card-overlay">
+                        <h3>Grey Marble</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="img/black-marble.jpg" alt="Black Marble" onerror="this.src='https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=400'">
+                    <div class="card-overlay">
+                        <h3>Black Marble</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="img/beige-marble.jpg" alt="Beige Marble" onerror="this.src='https://images.unsplash.com/photo-1615529182904-14819c35db37?w=400'">
+                    <div class="card-overlay">
+                        <h3>Beige Marble</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="img/green-marble.jpg" alt="Green Marble" onerror="this.src='https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400'">
+                    <div class="card-overlay">
+                        <h3>Green Marble</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="img/brown-marble.jpg" alt="Brown Marble" onerror="this.src='https://images.unsplash.com/photo-1615875466685-937ea48b5c8e?w=400'">
+                    <div class="card-overlay">
+                        <h3>Brown Marble</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Marble by Spaces Tab -->
+        <div class="tab-content" id="spaces">
+            <div class="tab-description">
+                <p>Find the perfect marble for every space in your home or commercial project. From kitchens to bathrooms, lobbies to living rooms.</p>
+            </div>
+            <div class="collection-grid">
+                <div class="collection-card">
+                    <img src="img/kitchen-marble.jpg" alt="Kitchen Countertops" onerror="this.src='https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=400'">
+                    <div class="card-overlay">
+                        <h3>Kitchen Countertops</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="img/bathroom-marble.jpg" alt="Bathroom Walls" onerror="this.src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400'">
+                    <div class="card-overlay">
+                        <h3>Bathroom Walls</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="img/flooring-marble.jpg" alt="Flooring" onerror="this.src='https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400'">
+                    <div class="card-overlay">
+                        <h3>Flooring</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="img/wall-cladding.jpg" alt="Wall Cladding" onerror="this.src='https://images.unsplash.com/photo-1615529328331-f8917597711f?w=400'">
+                    <div class="card-overlay">
+                        <h3>Wall Cladding</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="img/fireplace-marble.jpg" alt="Fireplace Surrounds" onerror="this.src='https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=400'">
+                    <div class="card-overlay">
+                        <h3>Fireplace Surrounds</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+                <div class="collection-card">
+                    <img src="img/staircase-marble.jpg" alt="Staircases" onerror="this.src='https://images.unsplash.com/photo-1615875466685-937ea48b5c8e?w=400'">
+                    <div class="card-overlay">
+                        <h3>Staircases</h3>
+                        <a href="#" class="view-btn">View Collection →</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
- <section id="vertical-showroom" class="vertical-nav-container">
+    <!-- Interactive Product Slider -->
+    <section class="interactive-slider-section" style="display: none;">
+        <h2>Signature Collections</h2>
+        <div class="interactive-slider">
+            <div class="slider-item active" data-slide="1">
+                <div class="slider-content">
+                    <div class="slider-text">
+                        <span class="slide-number">01</span>
+                        <h3>Carrara White Marble</h3>
+                        <p>The epitome of luxury, Carrara marble features delicate grey veining on a pristine white background. Perfect for countertops, flooring, and statement walls.</p>
+                        <ul class="product-specs">
+                            <li><strong>Origin:</strong> Tuscany, Italy</li>
+                            <li><strong>Finish:</strong> Polished, Honed, Brushed</li>
+                            <li><strong>Application:</strong> Interior & Exterior</li>
+                        </ul>
+                        <button class="connect-btn">Request Quote</button>
+                    </div>
+                    <div class="slider-image" style="background-image: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200')"></div>
+                </div>
+            </div>
+            
+            <div class="slider-item" data-slide="2">
+                <div class="slider-content">
+                    <div class="slider-text">
+                        <span class="slide-number">02</span>
+                        <h3>Black Galaxy Granite</h3>
+                        <p>Stunning black granite with golden speckles that shimmer like stars. Highly durable and perfect for high-traffic areas and kitchen countertops.</p>
+                        <ul class="product-specs">
+                            <li><strong>Origin:</strong> Andhra Pradesh, India</li>
+                            <li><strong>Finish:</strong> Polished, Flamed</li>
+                            <li><strong>Application:</strong> Countertops, Flooring</li>
+                        </ul>
+                        <button class="connect-btn">Request Quote</button>
+                    </div>
+                    <div class="slider-image" style="background-image: url('https://images.unsplash.com/photo-1554188248-986adbb73be4?w=1200')"></div>
+                </div>
+            </div>
+            
+            <div class="slider-item" data-slide="3">
+                <div class="slider-content">
+                    <div class="slider-text">
+                        <span class="slide-number">03</span>
+                        <h3>Teakwood Sandstone</h3>
+                        <p>Warm, earthy tones with natural wood-like patterns. Ideal for creating rustic and contemporary outdoor spaces with superior weather resistance.</p>
+                        <ul class="product-specs">
+                            <li><strong>Origin:</strong> Rajasthan, India</li>
+                            <li><strong>Finish:</strong> Natural, Sandblasted</li>
+                            <li><strong>Application:</strong> Outdoor Paving, Cladding</li>
+                        </ul>
+                        <button class="connect-btn">Request Quote</button>
+                    </div>
+                    <div class="slider-image" style="background-image: url('https://images.unsplash.com/photo-1615874694520-474822394e73?w=1200')"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-navigation">
+            <button class="slide-nav-btn" data-target="1">01</button>
+            <button class="slide-nav-btn" data-target="2">02</button>
+            <button class="slide-nav-btn" data-target="3">03</button>
+        </div>
+    </section>
+
+    <!-- Our Process Section -->
+    <section class="process-section" style="display: none;">
+        <div class="section-header">
+            <span class="section-tag">How We Work</span>
+            <h2>Our Crafting Process</h2>
+            <p>From quarry to your space, we ensure excellence at every step</p>
+        </div>
+        
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <div class="step-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    </svg>
+                </div>
+                <h3>Selection & Quarrying</h3>
+                <p>Expert geologists identify and extract premium quality stones from the finest quarries</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <div class="step-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v6m0 6v6m4.22-11.22l-4.24 4.24m0 4.96l-4.24 4.24m11.22-4.22l-4.24-4.24m0-4.96L9.76 6.78"/>
+                    </svg>
+                </div>
+                <h3>Precision Cutting</h3>
+                <p>State-of-the-art machinery cuts stones to exact specifications with minimal waste</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <div class="step-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                </div>
+                <h3>Expert Finishing</h3>
+                <p>Master craftsmen apply various finishes - polished, honed, or textured to perfection</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <div class="step-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 11l3 3L22 4"/>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                    </svg>
+                </div>
+                <h3>Quality Inspection</h3>
+                <p>Rigorous quality checks ensure every piece meets our exacting standards</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">05</div>
+                <div class="step-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="3" width="15" height="13"/>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                        <circle cx="5.5" cy="18.5" r="2.5"/>
+                        <circle cx="18.5" cy="18.5" r="2.5"/>
+                    </svg>
+                </div>
+                <h3>Delivery & Installation</h3>
+                <p>Safe packaging, timely delivery, and professional installation at your location</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" style="display: none;">
+        <div class="section-header">
+            <span class="section-tag">Client Stories</span>
+            <h2>What Our Clients Say</h2>
+            <p>Real experiences from customers who chose LITHOS</p>
+        </div>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"The Carrara marble we installed in our home is absolutely stunning. The quality exceeded our expectations, and the installation team was professional and efficient. LITHOS transformed our living space into a work of art."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">RS</div>
+                    <div class="author-info">
+                        <h4>Rajesh Sharma</h4>
+                        <span>Luxury Villa Owner, Mumbai</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card featured">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"We've been sourcing stones from LITHOS for our commercial projects for over 10 years. Their consistency in quality, adherence to timelines, and competitive pricing makes them our go-to supplier. Highly recommended for large-scale projects."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AP</div>
+                    <div class="author-info">
+                        <h4>Architect Priya Malhotra</h4>
+                        <span>Principal Architect, Design Studio</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"The Black Galaxy granite countertops look spectacular! The team helped us choose the perfect finish and the installation was flawless. It's been 3 years and they still look brand new. Worth every penny!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MK</div>
+                    <div class="author-info">
+                        <h4>Meera Kapoor</h4>
+                        <span>Homeowner, Bangalore</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="section-header">
+            <span class="section-tag">Our Work</span>
+            <h2>Project Gallery</h2>
+            <p>Explore our stunning collection of completed projects and material installations</p>
+        </div>
+        
+        <div class="gallery-grid">
+            <!-- Row 1 -->
+            <div class="gallery-item" data-category="residential kitchen">
+                <img src="img/gallery-1.jpg" alt="Luxury Kitchen Marble Countertop" onerror="this.src='https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=800'">
+                <div class="gallery-overlay">
+                    <h3>Luxury Kitchen</h3>
+                    <p>Carrara White Marble Countertop</p>
+                    <span class="gallery-icon">+</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="commercial">
+                <img src="img/gallery-2.jpg" alt="Hotel Lobby Flooring" onerror="this.src='https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800'">
+                <div class="gallery-overlay">
+                    <h3>Hotel Lobby</h3>
+                    <p>Italian Marble Flooring</p>
+                    <span class="gallery-icon">+</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item gallery-wide" data-category="residential bathroom">
+                <img src="img/gallery-3.jpg" alt="Master Bathroom" onerror="this.src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800'">
+                <div class="gallery-overlay">
+                    <h3>Master Bathroom</h3>
+                    <p>Calacatta Gold Marble</p>
+                    <span class="gallery-icon">+</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item gallery-wide" data-category="commercial">
+                <img src="img/gallery-4.jpg" alt="Office Reception" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200'">
+                <div class="gallery-overlay">
+                    <h3>Corporate Office</h3>
+                    <p>Black Galaxy Granite Reception</p>
+                    <span class="gallery-icon">+</span>
+                </div>
+            </div>
+            
+            <!-- Row 2 -->
+            <div class="gallery-item gallery-tall" data-category="outdoor">
+                <img src="img/gallery-5.jpg" alt="Outdoor Patio" onerror="this.src='https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800'">
+                <div class="gallery-overlay">
+                    <h3>Outdoor Patio</h3>
+                    <p>Sandstone Tiles</p>
+                    <span class="gallery-icon">+</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="residential">
+                <img src="img/gallery-6.jpg" alt="Living Room Feature Wall" onerror="this.src='https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800'">
+                <div class="gallery-overlay">
+                    <h3>Feature Wall</h3>
+                    <p>Onyx Marble Backlit</p>
+                    <span class="gallery-icon">+</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="kitchen">
+                <img src="img/gallery-7.jpg" alt="Modern Kitchen Island" onerror="this.src='https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800'">
+                <div class="gallery-overlay">
+                    <h3>Kitchen Island</h3>
+                    <p>Emperador Brown Marble</p>
+                    <span class="gallery-icon">+</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="commercial">
+                <img src="img/gallery-8.jpg" alt="Restaurant Interior" onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800'">
+                <div class="gallery-overlay">
+                    <h3>Restaurant Interior</h3>
+                    <p>Statuario Marble Tables</p>
+                    <span class="gallery-icon">+</span>
+                </div>
+            </div>
+            
+            <!-- Row 3 -->
+            <div class="gallery-item" data-category="bathroom">
+                <img src="img/gallery-9.jpg" alt="Spa Bathroom" onerror="this.src='https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800'">
+                <div class="gallery-overlay">
+                    <h3>Spa Bathroom</h3>
+                    <p>Travertine Wall Tiles</p>
+                    <span class="gallery-icon">+</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item gallery-wide" data-category="outdoor">
+                <img src="img/gallery-10.jpg" alt="Pool Deck" onerror="this.src='https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200'">
+                <div class="gallery-overlay">
+                    <h3>Pool Deck</h3>
+                    <p>Non-Slip Granite Pavers</p>
+                    <span class="gallery-icon">+</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="residential">
+                <img src="img/gallery-11.jpg" alt="Staircase Design" onerror="this.src='https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800'">
+                <div class="gallery-overlay">
+                    <h3>Grand Staircase</h3>
+                    <p>White Marble Steps</p>
+                    <span class="gallery-icon">+</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="kitchen residential">
+                <img src="img/gallery-12.jpg" alt="Kitchen Backsplash" onerror="this.src='https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800'">
+                <div class="gallery-overlay">
+                    <h3>Kitchen Backsplash</h3>
+                    <p>Herringbone Marble Pattern</p>
+                    <span class="gallery-icon">+</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- View More Button -->
+        <div class="gallery-load-more">
+            <button class="connect-btn">View More Projects</button>
+        </div>
+    </section>
+
+    <!-- Visual Showcase Carousel -->
+    <section class="filter-carousel-section">
+        <div class="filter-left">
+            <div class="filter-content">
+                <h2>Our Materials</h2>
+                <p>Explore the finest natural stones from around the world</p>
+            </div>
+        </div>
+        <div class="filter-right">
+            <div class="scrolling-images-track">
+                <div class="scrolling-images">
+                    <div class="scroll-image" style="background-image: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800')"></div>
+                    <div class="scroll-image" style="background-image: url('https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800')"></div>
+                    <div class="scroll-image" style="background-image: url('https://images.unsplash.com/photo-1615874694520-474822394e73?w=800')"></div>
+                    <div class="scroll-image" style="background-image: url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800')"></div>
+                    <div class="scroll-image" style="background-image: url('https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800')"></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="scroll-image" style="background-image: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800')"></div>
+                    <div class="scroll-image" style="background-image: url('https://images.unsplash.com/photo-1554188248-986adbb73be4?w=800')"></div>
+                    <div class="scroll-image" style="background-image: url('https://images.unsplash.com/photo-1615874694520-474822394e73?w=800')"></div>
+                    <div class="scroll-image" style="background-image: url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800')"></div>
+                    <div class="scroll-image" style="background-image: url('https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800')"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="cta-banner-section">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Space?</h2>
+            <p>Let our experts help you choose the perfect stone for your project</p>
+            <div class="cta-buttons">
+                <button class="connect-btn cta-primary">Get Free Consultation</button>
+                <button class="connect-btn cta-secondary">Download Catalogue</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications-section" style="display: none;">
+        <div class="section-header">
+            <span class="section-tag">Quality Assured</span>
+            <h2>Certifications & Memberships</h2>
+        </div>
+        
+        <div class="certifications-grid">
+            <div class="cert-badge">
+                <div class="cert-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <h4>ISO 9001:2015</h4>
+                <p>Quality Management</p>
+            </div>
+            
+            <div class="cert-badge">
+                <div class="cert-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="16 12 12 8 8 12"/>
+                        <line x1="12" y1="16" x2="12" y2="8"/>
+                    </svg>
+                </div>
+                <h4>CE Certified</h4>
+                <p>European Standards</p>
+            </div>
+            
+            <div class="cert-badge">
+                <div class="cert-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <h4>Green Building</h4>
+                <p>Sustainable Materials</p>
+            </div>
+            
+            <div class="cert-badge">
+                <div class="cert-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                </div>
+                <h4>Award Winner</h4>
+                <p>Industry Excellence</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infrastructure Section -->
+    <section id="vertical-showroom" class="vertical-nav-container">
         <div class="vertical-nav-left">
             <h3 class="v-nav-title">Infrastructure</h3>
             <ul class="v-nav-list">
@@ -160,6 +686,7 @@
         </div>
     </section>
 
+    <!-- Location & Directions -->
 <section id="location" class="location-section">
     <div class="location-inner">
         <div class="location-info">

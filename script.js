@@ -144,6 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
     initInfiniteCarousel();
     initGalleryFilters();
+    initMarbleCollectionsTabs();
+    initGalleryFilter();
     
     const categoryNameEl = document.getElementById('category-name');
     const arrowSep = document.getElementById('arrow-separator');
@@ -1340,3 +1342,198 @@ function updateBreadcrumb(categories, collections) {
     }
 }
 
+// --- INTERACTIVE SLIDER FOR MARBLE PRODUCTS ---
+document.addEventListener('DOMContentLoaded', () => {
+    const sliderItems = document.querySelectorAll('.slider-item');
+    const navButtons = document.querySelectorAll('.slide-nav-btn');
+    
+    if (sliderItems.length === 0 || navButtons.length === 0) return;
+    
+    let currentSlide = 1;
+    
+    function showSlide(slideNumber) {
+        sliderItems.forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        navButtons.forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        const targetSlide = document.querySelector(`.slider-item[data-slide="${slideNumber}"]`);
+        const targetBtn = document.querySelector(`.slide-nav-btn[data-target="${slideNumber}"]`);
+        
+        if (targetSlide) targetSlide.classList.add('active');
+        if (targetBtn) targetBtn.classList.add('active');
+        
+        currentSlide = slideNumber;
+    }
+    
+    navButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetSlide = parseInt(btn.getAttribute('data-target'));
+            showSlide(targetSlide);
+        });
+    });
+    
+    // Auto-advance slider every 6 seconds
+    setInterval(() => {
+        currentSlide = currentSlide >= sliderItems.length ? 1 : currentSlide + 1;
+        showSlide(currentSlide);
+    }, 6000);
+    
+    // Initialize first slide as active
+    showSlide(1);
+});
+
+// --- CATEGORY CARDS ANIMATION ---
+document.addEventListener('DOMContentLoaded', () => {
+    const categoryCards = document.querySelectorAll('.category-card');
+    
+    if (categoryCards.length === 0) return;
+    
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 150);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    categoryCards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'all 0.6s ease';
+        observer.observe(card);
+    });
+});
+
+// --- ANIMATED STATS COUNTER ---
+document.addEventListener('DOMContentLoaded', () => {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    if (statNumbers.length === 0) return;
+    
+    let hasAnimated = false;
+    
+    const animateCounter = (element) => {
+        const target = parseInt(element.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
+        
+        const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+                element.textContent = Math.floor(current);
+                requestAnimationFrame(updateCounter);
+            } else {
+                element.textContent = target;
+            }
+        };
+        
+        updateCounter();
+    };
+    
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+                statNumbers.forEach((stat, index) => {
+                    setTimeout(() => {
+                        animateCounter(stat);
+                    }, index * 200);
+                });
+                observer.disconnect();
+            }
+        });
+    }, observerOptions);
+    
+    if (statNumbers.length > 0) {
+        observer.observe(statNumbers[0]);
+    }
+});
+
+// --- MARBLE COLLECTIONS TABS (RK MARBLE STYLE) ---
+function initMarbleCollectionsTabs() {
+    const tabBtns = document.querySelectorAll('.marble-collections-section .tab-btn');
+    const tabContents = document.querySelectorAll('.marble-collections-section .tab-content');
+    
+    if (tabBtns.length === 0) return;
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTab = btn.getAttribute('data-tab');
+            
+            // Remove active class from all buttons and contents
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked button and corresponding content
+            btn.classList.add('active');
+            const targetContent = document.getElementById(targetTab);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
+}
+
+// --- GALLERY FILTER FUNCTIONALITY ---
+function initGalleryFilter() {
+    const filterBtns = document.querySelectorAll('.gallery-filters .filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    if (filterBtns.length === 0 || galleryItems.length === 0) return;
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.getAttribute('data-filter');
+            
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Filter gallery items with animation
+            galleryItems.forEach((item, index) => {
+                const categories = item.getAttribute('data-category');
+                
+                if (filter === 'all' || categories.includes(filter)) {
+                    // Show item with staggered animation
+                    setTimeout(() => {
+                        item.style.display = 'block';
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        
+                        setTimeout(() => {
+                            item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 50);
+                    }, index * 50);
+                } else {
+                    // Hide item
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 400);
+                }
+            });
+        });
+    });
+}
